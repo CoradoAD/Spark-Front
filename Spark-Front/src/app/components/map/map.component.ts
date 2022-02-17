@@ -1,7 +1,5 @@
 // -- Gestion de l'affichage de la map (affichage de la carte 'OpenStreetMap' et de ses dépendances) -- //
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
-// declare let L: { map: (arg0: string) => { (): any; new(): any; setView: { (arg0: number[], arg1: number): any; new(): any; }; }; tileLayer: (arg0: string, arg1: { attribution: string; }) => { (): any; new(): any; addTo: { (arg0: any): void; new(): any; }; }; };
-// import '../../node_modules/leaflet-routing-machine/dist/leaflet-routing-machine.js'
 import * as L from "leaflet";
 import { latLng, tileLayer } from 'leaflet';
 import 'leaflet-routing-machine';
@@ -35,6 +33,7 @@ export class MapComponent implements OnInit, OnDestroy {
    * to see more options and stages please consult documentation:
    * - http://www.liedman.net/leaflet-routing-machine/#getting-started (official site)
    * - http://www.liedman.net/leaflet-routing-machine/tutorials/ (tutorials - official)
+   * - http://www.liedman.net/leaflet-routing-machine/api/ (API-Doc)
    * - https://github.com/perliedman/leaflet-routing-machine#readme (gitHub)
    */
   routingModule() {
