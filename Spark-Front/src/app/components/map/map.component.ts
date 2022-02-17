@@ -1,9 +1,10 @@
 // -- Gestion de l'affichage de la map (affichage de la carte 'OpenStreetMap' et de ses dépendances) -- //
-import { Component, OnInit, AfterViewInit, OnDestroy, Output, Input, EventEmitter } from '@angular/core';
-import { circle, latLng, polygon, tileLayer } from 'leaflet';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 // declare let L: { map: (arg0: string) => { (): any; new(): any; setView: { (arg0: number[], arg1: number): any; new(): any; }; }; tileLayer: (arg0: string, arg1: { attribution: string; }) => { (): any; new(): any; addTo: { (arg0: any): void; new(): any; }; }; };
 // import '../../node_modules/leaflet-routing-machine/dist/leaflet-routing-machine.js'
 import * as L from "leaflet";
+import { latLng, tileLayer } from 'leaflet';
+import 'leaflet-routing-machine';
 
 
 @Component({
@@ -27,7 +28,22 @@ export class MapComponent implements OnInit, OnDestroy {
   public map!: L.Map;
   public zoom!: number;
 
-  constructor() {
+  constructor() { }
+
+  /**
+   * 'leaflet routing machine' nav
+   * to see more options and stages please consult documentation:
+   * - http://www.liedman.net/leaflet-routing-machine/#getting-started (official site)
+   * - http://www.liedman.net/leaflet-routing-machine/tutorials/ (tutorials - official)
+   * - https://github.com/perliedman/leaflet-routing-machine#readme (gitHub)
+   */
+  routingModule() {
+    L.Routing.control({
+      waypoints: [
+          L.latLng(43.5596, 4.0852),
+          L.latLng(43.61424, 3.87117)
+      ]
+    }).addTo(this.map);
   }
 
   ngOnInit() {
@@ -44,6 +60,8 @@ export class MapComponent implements OnInit, OnDestroy {
     map.setView([43.61424, 3.87117], 16); // Set variables for init map
     this.zoom = map.getZoom();
     this.zoom$.emit(this.zoom);
+    // itinerary test for routingModule
+    this.routingModule();
   }
 
   onMapZoomEnd(e: L.ZoomAnimEvent) {
