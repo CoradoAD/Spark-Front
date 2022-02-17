@@ -4,13 +4,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MapComponent } from './components/map/map.component';
-import { ParkingComponent } from './shared/models/parking/parking.component';
+import { PopupErrorMessageComponent } from './components/popup-error-message/popup-error-message.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     MapComponent,
-    ParkingComponent
+    PopupErrorMessageComponent
+   
   ],
   imports: [
     BrowserModule,
