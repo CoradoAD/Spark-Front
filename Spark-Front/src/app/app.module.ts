@@ -5,6 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MapComponent } from './components/map/map.component';
 import { BottomPopupInteractiveComponent } from './components/bottom-popup-interactive/bottom-popup-interactive.component';
+import { AddFavoritesComponent } from './components/bottom-popup-interactive/add-favorites/add-favorites.component';
+import { MessageComponent } from './components/bottom-popup-interactive/message/message.component';
 
 
 @NgModule({
@@ -12,6 +14,8 @@ import { BottomPopupInteractiveComponent } from './components/bottom-popup-inter
     AppComponent,
     MapComponent,
     BottomPopupInteractiveComponent,
+    AddFavoritesComponent,
+    MessageComponent,
   ],
   imports: [
     BrowserModule,

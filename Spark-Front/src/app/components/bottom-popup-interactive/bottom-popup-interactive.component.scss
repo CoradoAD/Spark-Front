@@ -1,0 +1,20 @@
+
+.container-popup{
+
+  background-color: #bcbbbb6c;
+  border : solid 1px #BCBBBB;
+  border-bottom: none;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column ;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 0 20px 0;
+  width: 100%;
+
+}
+
+.container-message {
+  margin-top: 10px;
+}
