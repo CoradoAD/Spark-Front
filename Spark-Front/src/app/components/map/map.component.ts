@@ -1,16 +1,54 @@
 // -- Gestion de l'affichage de la map (affichage de la carte 'OpenStreetMap' et de ses dépendances) -- //
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, OnDestroy, Output, Input, EventEmitter } from '@angular/core';
+import { circle, latLng, polygon, tileLayer } from 'leaflet';
+// declare let L: { map: (arg0: string) => { (): any; new(): any; setView: { (arg0: number[], arg1: number): any; new(): any; }; }; tileLayer: (arg0: string, arg1: { attribution: string; }) => { (): any; new(): any; addTo: { (arg0: any): void; new(): any; }; }; };
+// import '../../node_modules/leaflet-routing-machine/dist/leaflet-routing-machine.js'
+import * as L from "leaflet";
+
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss']
 })
-export class MapComponent implements OnInit {
+export class MapComponent implements OnInit, OnDestroy {
+  @Output() map$: EventEmitter<L.Map> = new EventEmitter;
+  @Output() zoom$: EventEmitter<number> = new EventEmitter;
+  @Input() options: L.MapOptions= {
+                      layers:[tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png', {
+                        opacity: 0.7,
+                        maxZoom: 21,
+                        detectRetina: true,
+                        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                      })],
+                      zoom:1,
+                      center:latLng(43.61424,3.87117, 14)
+  };
+  public map!: L.Map;
+  public zoom!: number;
 
-  constructor() { }
+  constructor() {
+  }
 
-  ngOnInit(): void {
+  ngOnInit() {
+  }
+
+  ngOnDestroy() {
+    this.map.clearAllEventListeners;
+    this.map.remove();
+  };
+
+  onMapReady(map: L.Map) {
+    this.map = map;
+    this.map$.emit(map);
+    map.setView([43.61424, 3.87117], 16); // Set variables for init map
+    this.zoom = map.getZoom();
+    this.zoom$.emit(this.zoom);
+  }
+
+  onMapZoomEnd(e: L.ZoomAnimEvent) {
+    this.zoom = e.target.getZoom();
+    this.zoom$.emit(this.zoom);
   }
 
 }
