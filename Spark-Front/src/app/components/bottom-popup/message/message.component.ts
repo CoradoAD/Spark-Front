@@ -7,8 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MessageComponent implements OnInit {
 
-  importantMessage : string = "important message"
-  message : string = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a sagittis ligula"
+  importantMessage : string = "important message" //to be modified as appropriate
+  message : string = "Lorem ipsum dolor sit amet" //to be modified as appropriate
+
+  emission: number= 220;
+  gain: number= 2
+
+  boolean: boolean = false
 
   constructor() { }
 

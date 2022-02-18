@@ -1,10 +1,1 @@
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="48" height="48" viewBox="0 0 48 48" enable-background="new 0 0 48 48" xml:space="preserve">
-<polygon fill="#FFCA28" points="24,4 31,17 45,19 35,29 37,44 24,37 11,44 13,29 3,19 17,17 "/>
-<g>
-	<polygon fill="#F9A825" points="24,25 31,17 24,4 &#9;"/>
-	<polygon fill="#F9A825" points="45,19 24,25 35,29 &#9;"/>
-	<polygon fill="#F9A825" points="37,44 24,25 24,37 &#9;"/>
-	<polygon fill="#F9A825" points="13,29 11,44 24,25 &#9;"/>
-	<polygon fill="#F9A825" points="3,19 24,25 17,17 &#9;"/>
-</g>
-</svg>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 30"><defs><style>.cls-1{fill:#fcfcfc;}</style></defs><path class="cls-1" d="M15.87,28.23,13.54,38a1,1,0,0,0,.38,1,1,1,0,0,0,1.1,0l8.76-5.2,8.76,5.2a1,1,0,0,0,.51.14A1,1,0,0,0,34,38L31.7,28.23l7.73-6.55a1,1,0,0,0-.56-1.76l-10.2-.84-4-9.25a1,1,0,0,0-.92-.61,1,1,0,0,0-.92.61l-4,9.25-10.2.84a1,1,0,0,0-.56,1.76ZM19.66,21a1,1,0,0,0,.84-.6l3.28-7.66,3.28,7.66a1,1,0,0,0,.84.6l8.39.69L29.93,27.1a1,1,0,0,0-.32,1l1.92,8L24.3,31.86a1,1,0,0,0-1,0L16,36.16,18,28.1a1,1,0,0,0-.33-1l-6.36-5.39Z" transform="translate(-7.78 -9.22)"/></svg>
