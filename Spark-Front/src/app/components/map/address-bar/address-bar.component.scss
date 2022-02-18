@@ -1,0 +1,31 @@
+/* Rectangle 6 */
+.addressBarForm{
+    width:100%;
+    background:transparent;
+    display: flex;
+    flex-grow: 1;
+    flex-direction: row;
+    justify-content:center;
+    
+
+}
+.icon {
+    height: 30px;
+    width: 30px;
+}
+
+.label{
+    color: white;
+    display:block;    
+    float:left;
+    white-space: nowrap;
+}
+
+.fieldAddress{
+
+    color: white;
+background: rgba(188, 187, 187, 0.33);
+border: 1px solid #BCBBBB;
+border-radius: 30px;
+}
+
