@@ -1,0 +1,23 @@
+
+  <form class="addressBarForm" (submit)="onSubmit()">
+
+    <label for="address" class="label">Entrez votre destination</label>
+
+    <div class="inputBloc">
+
+      <a>
+        <img class="icon star" src="assets/addressBar/star.svg" />
+      </a>
+
+      <input class="fieldAddress" id="address" type="text" formControlName="address" name="address"
+        placeholder="Entrez votre destination" #address>
+
+        <button type="submit">
+          <img class="icon" src="assets/addressBar/loupe.svg" />
+        </button>
+        <div style="color:brown">{{addressBarForm |json}} {{address.value|json}}</div>
+       </div>
+
+  </form>
+
+
