@@ -7,12 +7,18 @@ import { MapComponent } from './components/map/map.component';
 
 import { NavbarComponent } from './components/navbar/navbar.component';
 
+import { PopupErrorMessageComponent } from './components/popup-error-message/popup-error-message.component';
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
-    MapComponent,
-    
-    NavbarComponent
+    MapComponent,    
+    NavbarComponent,
+    PopupErrorMessageComponent
+   
+
   ],
   imports: [
     BrowserModule,
