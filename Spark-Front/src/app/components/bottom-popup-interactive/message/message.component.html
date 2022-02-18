@@ -1,8 +1,8 @@
-<p class="text">Places libres :</p>
+<p [style.text-decoration]= "boolean ? 'underline' : 'none' " class="text">Lorem ipsum</p>
 
-<div class="container">
+<div *ngIf="boolean; else elseBlock" class="container">
 
-  <button class="btn-left">{{messageBtnLeft }}
+  <button class="btn-check">{{messageBtnLeft }}
     <div class="cercleIcon">
       <img [src]="pathIconLeft" alt="check">
     </div>
@@ -10,11 +10,23 @@
 
   <p class="nbPlaces"> {{ nbPlaces }}</p>
 
-  <button class="btn-right">
+  <button class="btn-cross">
     <div class="cercleIcon">
     <img [src]="pathIconRight" alt="cross">
     </div>
     {{ messageBtnRight }}
   </button>
+</div>
+
+
+<ng-template #elseBlock>
+
+  <div class="container">
+    <button class="btn-check">{{messageBtnLeft }}
+      <div class="cercleIcon">
+        <img [src]="pathIconLeft" alt="check">
+      </div>
+    </button>
 
 </div>
+</ng-template>
