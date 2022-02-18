@@ -13,7 +13,7 @@ export class MessageComponent implements OnInit {
   emission: number= 220;
   gain: number= 2
 
-  boolean: boolean = false
+  boolean: boolean = true
 
   constructor() { }
 
