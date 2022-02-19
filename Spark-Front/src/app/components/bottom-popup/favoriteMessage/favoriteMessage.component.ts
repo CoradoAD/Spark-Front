@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-add-favorites',
-  templateUrl: './add-favorites.component.html',
-  styleUrls: ['./add-favorites.component.scss']
+  selector: 'app-favoriteMessage',
+  templateUrl: './favoriteMessage.component.html',
+  styleUrls: ['./favoriteMessage.component.scss']
 })
-export class AddFavoritesComponent implements OnInit {
+export class FavoriteMessageComponent implements OnInit {
 
   message : string = "exemple message favorite"
   iconPath: any = "/assets/popup-message/star.svg"

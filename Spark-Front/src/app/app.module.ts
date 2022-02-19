@@ -5,8 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MapComponent } from './components/map/map.component';
 import { BottomPopupComponent } from './components/bottom-popup/bottom-popup.component';
-import { AddFavoritesComponent } from './components/bottom-popup/add-favorites/add-favorites.component';
-import { MessageComponent } from './components/bottom-popup/message/message.component';
+import { FavoriteMessageComponent } from './components/bottom-popup/favoriteMessage/favoriteMessage.component';
+import { MessageStandardComponent } from './components/bottom-popup/messageStandard/messageStandard.component';
 
 
 @NgModule({
@@ -14,8 +14,8 @@ import { MessageComponent } from './components/bottom-popup/message/message.comp
     AppComponent,
     MapComponent,
     BottomPopupComponent,
-    AddFavoritesComponent,
-    MessageComponent,
+    FavoriteMessageComponent,
+    MessageStandardComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-message',
-  templateUrl: './message.component.html',
-  styleUrls: ['./message.component.scss']
+  selector: 'app-messageStandard',
+  templateUrl: './messageStandard.component.html',
+  styleUrls: ['./messageStandard.component.scss']
 })
-export class MessageComponent implements OnInit {
+export class MessageStandardComponent implements OnInit {
 
   importantMessage : string = "important message" //to be modified as appropriate
   message : string = "Lorem ipsum dolor sit amet" //to be modified as appropriate
