@@ -1,46 +1,71 @@
 /* Rectangle 6 */
 .addressBarForm {
-  // width: 100%;
-  // background: transparent;
+
   display: flex;
   flex-direction: column;
-  align-items: center;
-  // flex-grow: 1;
-  // flex-direction: row;
-  // justify-content: center;
-  margin-left: 10%;
-  margin-right: 10%;
+  margin: 0 auto;
+  padding: 50px;
+
 }
 
-.icon {
-  height: 30px;
-  width: 30px;
-}
 
 .label {
   color: white;
-  // display: block;
-  // float: left;
-  // white-space: nowrap;
+  margin-left: 15px;
 }
+
+
+.inputBloc {
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
 
 .fieldAddress {
 
   color: white;
   background: rgba(188, 187, 187, 0.33);
   border: 1px solid #BCBBBB;
-  border-radius: 30px;
-  padding: 10px 40px;
-  text-align: center;
+  border-right: none;
+  border-left: none;
+  font-size: 0.8em;
+  height: 36px;
   width: 100%;
-  font-size: 0.7em;
+}
+
+
+.icon {
+
+  width: 19px;
+}
+
+.btn-search {
+  background-color: #4E9633;
+  border-radius: 0 30px 30px 0;
+  border: 1px solid #BCBBBB;
+  border-left: none;
+  width: 50px;
+  height: 36px;
+}
+
+
+.event-star {
+  background-color: rgba(188, 187, 187, 0.33);
+  border-radius: 30px 0 0 30px;
+  border: 1px solid #BCBBBB;
+  border-right: none;
+  width: 40px;
+  height: 36px;
 
 }
 
-.inputBloc {
-
-  display: flex;
-  align-items: center;
-  width: 100%;
-
+.star {
+  position: relative;
+  left: 5px;
+  top: 7px;
+  margin-left: 5px;
+  margin-right: 40px;
 }
