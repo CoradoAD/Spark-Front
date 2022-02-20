@@ -1,0 +1,55 @@
+/* Rectangle 6 */
+.addressBarForm {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 20px 0;
+  width: 90%;
+}
+
+.label {
+  margin-left: 35px;
+}
+
+.inputBloc {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.fieldAddress {
+  color: white;
+  background-color: rgba(188, 187, 187, 0.33);
+  border: 1px solid #BCBBBB;
+  border-right: none;
+  border-left: none;
+  font-size: 0.8em;
+  height: 36px;
+  width: 100%;
+  border-radius: 25px 0 0 25px;
+  padding: 0 50px;
+
+}
+
+.icon {
+  width: 20px;
+}
+
+.btn-search {
+  background-color: #4E9633;
+  border-radius: 0 30px 30px 0;
+  border: none;
+  height: 36px;
+  position: relative;
+  width: 55px;
+}
+
+.fieldAddress:focus {
+  outline: 1px solid rgb(90, 90, 92);
+}
+
+.star {
+  position: relative;
+  left: 35px;
+}
