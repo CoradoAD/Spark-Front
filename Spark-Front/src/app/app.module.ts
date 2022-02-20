@@ -21,17 +21,15 @@ import { AddressBarComponent } from './components/address-bar/address-bar.compon
 @NgModule({
   declarations: [
     AppComponent,
-    MapComponent,
     NavbarComponent,
     PopupErrorMessageComponent,
+    MapComponent,
     BottomPopupInteractiveComponent,
     AddFavoritesComponent,
     MessageComponent,
-
     BottomPopupComponent,
     FavoriteMessageComponent,
     MessageStandardComponent,
-
     AddressBarComponent
   ],
   imports: [
