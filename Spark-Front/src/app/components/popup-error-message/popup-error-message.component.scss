@@ -1,0 +1,19 @@
+.container-popup{
+
+  background-color: rgba(188, 187, 187, 0.33);
+    border : solid 0.2px #BCBBBB;
+    border-bottom: none;
+    border-radius: 10px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 30px 40px;
+    width : 30%;
+    margin: 0 auto;
+
+  }
+
+  .message{
+    font-weight:bold;
+  }
