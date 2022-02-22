@@ -1,9 +1,14 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class GainService {
+  constructor() {}
 
-  constructor() { }
+  // getGainByUser(): number {}
+
+  // calGain(): number {}
+
+  // saveGain(): number {}
 }
