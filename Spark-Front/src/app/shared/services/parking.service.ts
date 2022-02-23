@@ -22,7 +22,7 @@ export class ParkingService {
   getParkingList(){
     console.log("1.getParkingList");
     this.http.get<Parking[]>(this.sparkApiUrl).subscribe((parkings) => {
-      console.log(parkings);
+      console.log("2.getParkingList dans subscribe");
       this.allParkings$.next(parkings);
       
     });

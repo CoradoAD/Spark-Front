@@ -3,6 +3,10 @@ import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angu
 import * as L from "leaflet";
 import { latLng, tileLayer } from 'leaflet';
 import 'leaflet-routing-machine';
+import { Subscription } from 'rxjs';
+import { Parking } from 'src/app/shared/models/parking';
+import { ParkingDisplayService } from 'src/app/shared/services/parking-display.service';
+import { ParkingService } from 'src/app/shared/services/parking.service';
 
 
 @Component({
@@ -25,9 +29,11 @@ export class MapComponent implements OnInit, OnDestroy {
   };
   public map!: L.Map;
   public zoom!: number;
+  sub:Subscription |null=null;
+  parkings: Parking[] =[];
 
 
-  constructor() { }
+  constructor(private parkingDisplayService: ParkingDisplayService, private parkingService:ParkingService ){ }
 
   /**
    * 'leaflet routing machine' nav
@@ -47,6 +53,13 @@ export class MapComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    console.log("ngonInit");
+    this.sub = this.parkingService.allParkings$.subscribe((parkings) => {
+      console.log("dans subscribe ngOnInit")
+      this.parkings = parkings;
+      this.initParkingWiew();
+    });
+    this.parkingService.getParkingList();
   }
 
   ngOnDestroy() {
@@ -55,14 +68,39 @@ export class MapComponent implements OnInit, OnDestroy {
   };
 
   onMapReady(map: L.Map) {
+    
+    console.log("on Map Ready");
     this.map = map;
     this.map$.emit(map);
     map.setView([43.61424, 3.87117], 16); // Set variables for init map
     this.zoom = map.getZoom();
     this.zoom$.emit(this.zoom);
     // itinerary test for routingModule
-    this.routingModule();
+
+    //this.routingModule();
+    this.initParkingWiew();
+    //
   }
+  /**
+   * affiche  tous les parkings sur la carte
+   */
+  initParkingWiew(){
+      
+    this.parkingDisplayService.map=this.map;
+    console.log(this.parkings); 
+    this.testSignet();
+    this.parkings.forEach(parking => {  
+      
+      this.parkingDisplayService.addParkingOnMap(parking);
+    });
+    
+
+  }
+  testSignet(){
+    L.marker([43.61424, 3.87117]).addTo(this.map);
+    
+  }
+  
 
   onMapZoomEnd(e: L.ZoomAnimEvent) {
     this.zoom = e.target.getZoom();

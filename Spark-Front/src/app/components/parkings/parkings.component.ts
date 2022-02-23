@@ -15,9 +15,12 @@ export class ParkingsComponent implements OnInit {
 
   ngOnInit(): void {
     this.sub = this.parkingService.allParkings$.subscribe((parkings) => {
+      //console.log("dans parkings.components suscribe")
       this.parkings = parkings;
     });
     this.parkingService.getParkingList();
+   // console.log("mesparkings" +this.parkings.length); 
   }
+  
 
 }
