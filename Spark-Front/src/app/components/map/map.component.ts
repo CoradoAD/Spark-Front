@@ -54,10 +54,10 @@ export class MapComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     console.log("ngonInit");
-    this.sub = this.parkingService.allParkings$.subscribe((parkings) => {
-      console.log("dans subscribe ngOnInit")
+    this.sub = this.parkingService.allParkings$.subscribe((parkings) => {      
       this.parkings = parkings;
       this.initParkingWiew();
+      
     });
     this.parkingService.getParkingList();
   }
@@ -78,8 +78,8 @@ export class MapComponent implements OnInit, OnDestroy {
     // itinerary test for routingModule
 
     //this.routingModule();
-    this.initParkingWiew();
-    //
+    
+  
   }
   /**
    * affiche  tous les parkings sur la carte
@@ -87,19 +87,14 @@ export class MapComponent implements OnInit, OnDestroy {
   initParkingWiew(){
       
     this.parkingDisplayService.map=this.map;
-    console.log(this.parkings); 
-    this.testSignet();
-    this.parkings.forEach(parking => {  
-      
+    console.log(this.parkings);   
+    this.parkings.forEach(parking => {       
       this.parkingDisplayService.addParkingOnMap(parking);
     });
-    
+    // this.map$.emit(this.map);
 
   }
-  testSignet(){
-    L.marker([43.61424, 3.87117]).addTo(this.map);
-    
-  }
+  
   
 
   onMapZoomEnd(e: L.ZoomAnimEvent) {
