@@ -1,0 +1,16 @@
+{
+  "user": [{
+
+    "id":1,
+    "username": "wowey"
+
+  }],
+
+  "parking": [
+    {
+      "id":1,
+      "nom": "Antigone",
+      "zone": "Centre-ville"
+    }
+  ]
+}

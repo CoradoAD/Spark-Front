@@ -18,10 +18,13 @@ export class EmissionService {
     return speed * time;
   }
 
-  	/**
-	 * Method to calculate footprint carbon by consomation of the user's car (custom
-	 * values footprint carbon)
-	 */
+
+
+    /**
+     *Method to calculate footprint carbon by consomation of *the user's car
+     * @param vehicle
+     * @returns custom values footprint carbon
+     */
 	// if the vehicle'energy of client is "Diesel or Essence"
   public carbonFootprintByConso(vehicle: Vehicle) {
     let consomation = vehicle.consomation;
@@ -29,6 +32,7 @@ export class EmissionService {
     let coefficient = energy.coefficient;
     return Math.ceil((consomation * coefficient) / 100);
   }
+
 
   	/**
 	 * Method to calculate the carbon emission when a user looking for a carpark
@@ -41,10 +45,13 @@ export class EmissionService {
     return carbonFootprint * distanceKmDone;
   }
 
+
   /**
-	 * Method to calculate the carbon emission when a user looking for a carpark
-	 * (with standard value footprint carbon)
-	 */
+   *
+   * @param distanceKmDone -> The distance traveled by a user looking for a carpark (distanceLookForPark(zone: Zone))
+   * @param vehicle -> vehicle of currentUser
+   * @returns emissions consumedByRoute
+   */
   public emissionConsumedByRoute(distanceKmDone: number, vehicle: Vehicle) {
     let energy = vehicle.energy;
     return energy.coefficient * distanceKmDone;

@@ -13,6 +13,9 @@ export const environment = {
     },
     zone: {
       url: 'http://localhost:8090/api/zone'
+    },
+    users: {
+      url: 'https://47d8e6a7-9be3-4b08-90f3-099caa04bc95.mock.pstmn.io/users'
     }
   }
 };
