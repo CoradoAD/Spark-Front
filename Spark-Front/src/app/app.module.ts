@@ -16,6 +16,8 @@ import { BottomPopupComponent } from './components/bottom-popup/bottom-popup.com
 import { FavoriteMessageComponent } from './components/bottom-popup/favoriteMessage/favoriteMessage.component';
 import { MessageStandardComponent } from './components/bottom-popup/messageStandard/messageStandard.component';
 import { AddressBarComponent } from './components/address-bar/address-bar.component';
+import { ItineraryComponent } from './components/itinerary/itinerary.component';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
@@ -30,7 +32,9 @@ import { AddressBarComponent } from './components/address-bar/address-bar.compon
     BottomPopupComponent,
     FavoriteMessageComponent,
     MessageStandardComponent,
-    AddressBarComponent
+    AddressBarComponent,
+    ItineraryComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
