@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { User } from '../models/userMooc';
 
 @Injectable({
   providedIn: 'root',
@@ -6,9 +7,19 @@ import { Injectable } from '@angular/core';
 export class GainService {
   constructor() {}
 
-  // getGainByUser(): number {}
+  public calGainSpark(emissionCarbon : number) {
 
-  // calGain(): number {}
+		let cal =  Math.ceil(emissionCarbon / 100);
+		return cal;
+	}
 
-  // saveGain(): number {}
+  public saveGainSpark(user : User, gainSpark : number) {
+
+		let gainDB = user.numberOfSparks;
+		gainDB = gainSpark + gainDB;
+
+		//HTTP POST
+
+	}
+
 }

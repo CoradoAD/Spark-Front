@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { User } from '../models/user';
+import { BehaviorSubject, first, Observable } from 'rxjs';
+import { User } from '../models/userMooc';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
@@ -15,6 +15,10 @@ export class UserService {
 
   public findAll(): Observable<User[]> {
     return this.http.get<User[]>(environment.apis.users.url);
+  }
+
+  public findOne() : Observable<User> {
+    return this.http.get<User>(environment.apis.users.url).pipe(first());
   }
 
   public selectUser(user: User) {

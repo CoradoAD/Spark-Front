@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { User } from '../models/user';
+import { User } from '../models/userMooc';
 import { Vehicle } from '../models/vehicle';
 
 @Injectable({
@@ -12,11 +12,9 @@ export class VehicleService {
 
   constructor(private http: HttpClient) { }
 
-  // public loadUserVehicle(user : User) {
-  //   this.http
-  //     .get<Vehicle>(environment.apis.vehicle.url)
-  //     .subscribe(vehicle => {
+  getAllVehicle(): Observable<Vehicle[]> {
+    return this.http.get<Vehicle[]>(environment.apis.vehicle.url);
+  }
 
-  //     });
-  // }
+
 }

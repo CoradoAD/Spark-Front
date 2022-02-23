@@ -1,12 +1,13 @@
 import { Energy } from "./energy";
 import { TypeVehicle } from "./type-vehicle";
-import { User } from "./user";
+import { User } from "./userMooc";
 
 export interface Vehicle {
 
-  consomation : number;
-  energy : Energy;
-  user : User;
-  typeVehicle : TypeVehicle;
+idVehicle: number;
+consomation: number;
+energy: Energy;
+vehicleUser: User;
+typeVehicle: TypeVehicle;
 
 }

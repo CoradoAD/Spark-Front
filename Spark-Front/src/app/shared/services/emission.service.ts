@@ -18,8 +18,6 @@ export class EmissionService {
     return speed * time;
   }
 
-
-
     /**
      *Method to calculate footprint carbon by consomation of *the user's car
      * @param vehicle
