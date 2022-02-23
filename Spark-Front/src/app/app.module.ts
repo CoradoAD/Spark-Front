@@ -16,6 +16,16 @@ import { BottomPopupComponent } from './components/bottom-popup/bottom-popup.com
 import { FavoriteMessageComponent } from './components/bottom-popup/favoriteMessage/favoriteMessage.component';
 import { MessageStandardComponent } from './components/bottom-popup/messageStandard/messageStandard.component';
 import { AddressBarComponent } from './components/address-bar/address-bar.component';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './components/login/login.component';
+import { HomeComponent } from './components/home/home.component';
+import { BoderUserComponent } from './components/boder-user/boder-user.component';
+import { BoderAdminComponent } from './components/boder-admin/boder-admin.component';
+import { ProfilComponent } from './components/profil/profil.component';
+
+
 
 
 @NgModule({
@@ -30,12 +40,27 @@ import { AddressBarComponent } from './components/address-bar/address-bar.compon
     BottomPopupComponent,
     FavoriteMessageComponent,
     MessageStandardComponent,
-    AddressBarComponent
+    AddressBarComponent,
+    RegisterComponent,
+    HomeComponent,
+    BoderUserComponent,
+    BoderAdminComponent,
+    LoginComponent,
+    ProfilComponent,
+
+
+
+
+
+
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    LeafletModule
+    LeafletModule,
+    FormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
