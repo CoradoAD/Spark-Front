@@ -16,7 +16,9 @@ import { BottomPopupComponent } from './components/bottom-popup/bottom-popup.com
 import { FavoriteMessageComponent } from './components/bottom-popup/favoriteMessage/favoriteMessage.component';
 import { MessageStandardComponent } from './components/bottom-popup/messageStandard/messageStandard.component';
 import { AddressBarComponent } from './components/address-bar/address-bar.component';
-
+import { HttpClientModule } from '@angular/common/http';
+import { ParkingsComponent } from './components/parkings/parkings.component';
+import { ParkingComponent } from './components/parkings/parking/parking.component';
 
 @NgModule({
   declarations: [
@@ -30,12 +32,15 @@ import { AddressBarComponent } from './components/address-bar/address-bar.compon
     BottomPopupComponent,
     FavoriteMessageComponent,
     MessageStandardComponent,
-    AddressBarComponent
+    AddressBarComponent,
+    ParkingsComponent,
+    ParkingComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    LeafletModule
+    LeafletModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

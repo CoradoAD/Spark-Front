@@ -2,14 +2,14 @@
 // Must be contaigned alls of 'parking-model' values
 export interface Parking {
     idParking:BigInteger ;
-    name:string;
+    nom:string;
     freeCapacity:BigInteger;
-    addressInfo:string;
-    nbPlaces:BigInteger;
-    xLong:number;
-    xLat:number;
-    apiUrl:string;
-    functionType:string;
+    adresse:string;
+    nb_places:BigInteger;
+    Xlong:number;
+    Ylat:number;
+    url_api:string;
+    typo_fonct:string;
 }
     
 

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?> <!-- Created with Vectornator (http://vectornator.io/) --><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg height="100%" stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 512 512" width="100%" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:vectornator="http://vectornator.io" xmlns:xlink="http://www.w3.org/1999/xlink">
+<metadata>
+<vectornator:setting key="IsTimeLapseWatermarkDisabled" value="false"/>
+<vectornator:setting key="UndoHistoryDisabled" value="true"/>
+<vectornator:setting key="VNDimensionsVisible" value="true"/>
+<vectornator:setting key="VNSnapToGuides" value="true"/>
+<vectornator:setting key="WDCMYKEnabledKey" value="false"/>
+<vectornator:setting key="WDDisplayWhiteBackground" value="false"/>
+<vectornator:setting key="WDDynamicGuides" value="false"/>
+<vectornator:setting key="WDGuidesVisible" value="true"/>
+<vectornator:setting key="WDIsolateActiveLayer" value="false"/>
+<vectornator:setting key="WDOutlineMode" value="false"/>
+<vectornator:setting key="WDRulersVisible" value="true"/>
+<vectornator:setting key="WDSnapToEdges" value="false"/>
+<vectornator:setting key="WDSnapToGrid" value="false"/>
+<vectornator:setting key="WDSnapToPoints" value="false"/>
+<vectornator:setting key="WDUnits" value="Pixels"/>
+</metadata>
+<defs/>
+<g id="spark_carpool" vectornator:layerName="spark_carpool">
+<path d="M466.185 233.783L428.192 125.23C417.835 95.6547 389.81 75.7717 358.463 75.7717L160.15 75.7717C128.803 75.7717 100.778 95.6547 90.4397 125.211L52.4461 233.765C32.157 247.112 19.3078 270.171 19.3078 295.537L19.3078 426.539C19.3078 446.939 35.8308 463.462 56.2307 463.462C76.6305 463.462 93.1535 446.939 93.1535 426.539L93.1535 403.259C93.1535 403.259 190.648 408.077 259.306 408.077C327.964 408.077 425.459 403.259 425.459 403.259L425.459 426.539C425.459 446.939 441.982 463.462 462.382 463.462C482.782 463.462 499.305 446.939 499.305 426.539L499.305 295.537C499.305 270.171 486.437 247.112 466.185 233.783ZM104.138 197.857L125.295 137.414C130.483 122.608 144.458 112.695 160.15 112.695L358.463 112.695C374.155 112.695 388.13 122.608 393.318 137.414L414.475 197.857C417.798 207.365 409.878 216.946 399.927 215.34C363.724 209.488 317.183 205.002 259.306 205.002C201.43 205.002 154.889 209.488 118.686 215.34C108.735 216.946 100.815 207.365 104.138 197.857ZM102.384 334.232C87.0982 334.232 74.6921 321.826 74.6921 306.54C74.6921 291.254 87.0982 278.847 102.384 278.847C117.67 278.847 130.076 291.254 130.076 306.54C130.076 321.826 117.67 334.232 102.384 334.232ZM314.691 315.77L203.922 315.77C193.731 315.77 185.461 307.5 185.461 297.309C185.461 287.118 193.731 278.847 203.922 278.847L314.691 278.847C324.881 278.847 333.152 287.118 333.152 297.309C333.152 307.5 324.881 315.77 314.691 315.77ZM416.229 334.232C400.942 334.232 388.536 321.826 388.536 306.54C388.536 291.254 400.942 278.847 416.229 278.847C431.515 278.847 443.921 291.254 443.921 306.54C443.921 321.826 431.515 334.232 416.229 334.232Z" fill="#ffffff" fill-rule="evenodd" opacity="1" stroke="none"/>
+<path d="M342.383 131.156C327.089 131.156 314.691 143.554 314.691 158.848C314.691 174.142 327.089 186.54 342.383 186.54C357.677 186.54 370.075 174.142 370.075 158.848C370.075 143.554 357.677 131.156 342.383 131.156ZM259.306 131.156C249.11 131.156 240.845 139.421 240.845 149.617C240.845 159.813 249.11 168.079 259.306 168.079C269.502 168.079 277.768 159.813 277.768 149.617C277.768 139.421 269.502 131.156 259.306 131.156ZM176.23 131.156C160.936 131.156 148.538 143.554 148.538 158.848C148.538 174.142 160.936 186.54 176.23 186.54C191.524 186.54 203.922 174.142 203.922 158.848C203.922 143.554 191.524 131.156 176.23 131.156Z" fill="#ffffff" fill-rule="evenodd" opacity="1" stroke="none"/>
+</g>
+</svg>

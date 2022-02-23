@@ -26,6 +26,7 @@ export class MapComponent implements OnInit, OnDestroy {
   public map!: L.Map;
   public zoom!: number;
 
+
   constructor() { }
 
   /**
