@@ -24,8 +24,7 @@ import { HomeComponent } from './components/home/home.component';
 import { BoderUserComponent } from './components/boder-user/boder-user.component';
 import { BoderAdminComponent } from './components/boder-admin/boder-admin.component';
 import { ProfilComponent } from './components/profil/profil.component';
-
-
+import { ItineraryComponent } from './components/itinerary/itinerary.component';
 
 
 @NgModule({
@@ -47,13 +46,7 @@ import { ProfilComponent } from './components/profil/profil.component';
     BoderAdminComponent,
     LoginComponent,
     ProfilComponent,
-
-
-
-
-
-
-
+    ItineraryComponent,
   ],
   imports: [
     BrowserModule,
