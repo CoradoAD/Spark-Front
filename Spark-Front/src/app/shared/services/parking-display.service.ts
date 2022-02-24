@@ -1,5 +1,5 @@
 import { Injectable, Output,EventEmitter } from '@angular/core';
-import { Map } from 'leaflet';
+import { Map, Marker } from 'leaflet';
 import { Parking } from '../models/parking';
 import * as L from "leaflet";
 import { BehaviorSubject } from 'rxjs';
@@ -16,19 +16,30 @@ export class ParkingDisplayService {
   map!: Map;
   parkIcon? : L.Icon;
   selectedParking$=new BehaviorSubject<Parking|undefined>(undefined);  
+  layer?:L.LayerGroup;
+  constructor() { 
 
-  constructor() { }
+    this.layer=new L.LayerGroup();
+  }
+
+
+  createLayerGroup(){
+    var layer=L.layerGroup();
+    layer.addLayer(L.marker([23,56]))
+  }
   /**
    * Ajoute une icone representant un parking sur la carte
    * @param parking 
    */
   addParkingOnMap(parking: Parking){   
     console.log("addParkingOnMap"); 
-    L.marker([parking.Ylat, parking.Xlong], {icon: this.getParkingIcon()})
+    
+    const marker=L.marker([parking.Ylat, parking.Xlong], {icon: this.getParkingIcon()})
     .on('click', ()=>{
       alert(parking.nom+" "+parking.freeCapacity);  // popup de test a supprimmer    
       this.selectedParking$.next(parking)})
-    .addTo(this.map);   
+    .addTo(this.map);  
+    
   }
   /**
    * crée et retourne l'icone pour un parking

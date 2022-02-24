@@ -66,6 +66,7 @@ export class MapService {
   setRouting(navGPS: NavGps) {
     this.routingModule(navGPS.localLat, navGPS.localLon, navGPS.distLat, navGPS.distLon);
     setInterval(() => this.syncGPSUserLoc(this.syncNavGPS), 500)
+    this.parkingService.setNavGPS(this.syncNavGPS);
   }
   /**
    * Sync user location on nav itinerary (leaflet-routing-machine)
@@ -81,14 +82,17 @@ export class MapService {
    * @param map L.Map
    */
   MapReady(map: L.Map, navNeed?: boolean, navGPS?: NavGps) {
-      this.parkingDisplayService.map=map;
+    console.log("onMapready");
+    this.parkingDisplayService.map=map;
+    console.log("Nav GPS init"+navGPS)
+    // if(navGPS)this.parkingService.setNavGPS(navGPS);
     // const obs$ = interval(1000);
     // obs$.subscribe((v) => console.log("received: ", v));
-    this.sub = this.parkingService.allParkings$.subscribe((parkings) => {  
+      this.sub = this.parkingService.parkingsAround$.subscribe((parkings) => {  
       this.parkings = parkings;
       this.initParkingWiew();      
     });
-    this.parkingService.getParkingList();
+    this.parkingService.updateParkingList();
     this.parkingDisplayService.selectedParking$.subscribe((parking) => {  
       this.selectedParking=parking;        
     });
@@ -98,7 +102,8 @@ export class MapService {
     this.zoom = map.getZoom();
     this.zoom$.emit(this.zoom);
     // // test routing
-    this.setRouting(this.navGPS);                            // -- Comment this line to Kill Itinerary module
+    this.setRouting(this.navGPS); 
+                               // -- Comment this line to Kill Itinerary module
     // test routing update
       // // If Routing machine isRunning
       // if (this.routingMachineIsRunning) {

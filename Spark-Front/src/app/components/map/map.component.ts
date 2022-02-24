@@ -38,7 +38,6 @@ export class MapComponent implements OnInit, OnDestroy {
    */
   onMapReady(map: L.Map) {
     this.mapService.MapReady(map);
-    console.log("after on map ready");
   }
 
   ngOnDestroy() {
