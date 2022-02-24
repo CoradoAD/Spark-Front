@@ -7,7 +7,7 @@ import { Subscription } from 'rxjs';
 import { Parking } from 'src/app/shared/models/parking';
 import { ParkingDisplayService } from 'src/app/shared/services/parking-display.service';
 import { ParkingService } from 'src/app/shared/services/parking.service';
-
+import { interval } from 'rxjs';
 
 @Component({
   selector: 'app-map',
@@ -31,6 +31,10 @@ export class MapComponent implements OnInit, OnDestroy {
   public zoom!: number;
   sub:Subscription |null=null;
   parkings: Parking[] =[];
+  /**
+   * parking selectionné lorsque l'on clique sur la carte
+   */
+  selectedParking:Parking|undefined;
 
 
   constructor(private parkingDisplayService: ParkingDisplayService, private parkingService:ParkingService ){ }
@@ -54,12 +58,17 @@ export class MapComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     console.log("ngonInit");
+    // const obs$ = interval(1000);
+    // obs$.subscribe((v) => console.log("received: ", v));
     this.sub = this.parkingService.allParkings$.subscribe((parkings) => {      
       this.parkings = parkings;
-      this.initParkingWiew();
-      
+      this.initParkingWiew();      
     });
     this.parkingService.getParkingList();
+    this.parkingDisplayService.selectedParking$.subscribe((parking) => {  
+         
+      this.selectedParking=parking;        
+    });
   }
 
   ngOnDestroy() {
@@ -85,7 +94,7 @@ export class MapComponent implements OnInit, OnDestroy {
    * affiche  tous les parkings sur la carte
    */
   initParkingWiew(){
-      
+     
     this.parkingDisplayService.map=this.map;
     console.log(this.parkings);   
     this.parkings.forEach(parking => {       
@@ -94,6 +103,7 @@ export class MapComponent implements OnInit, OnDestroy {
     // this.map$.emit(this.map);
 
   }
+  
   
   
 
