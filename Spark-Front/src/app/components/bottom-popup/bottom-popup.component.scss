@@ -1,16 +1,29 @@
-.container-popup{
+.container-popup {
 
   background-color: rgba(188, 187, 187, 0.33);
-  border : solid 1px #BCBBBB;
+  border: solid 1px #BCBBBB;
   border-bottom: none;
   border-radius: 10px;
   display: flex;
-  flex-direction: column ;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 5px 0 30px 0;
-  width: 100%;
 
+
+  position: absolute;
+  bottom: 66px;
+  z-index: 2;
+  animation: popup 2000ms;
 }
 
 
+@keyframes popup {
+  from {
+    transform: translateY(100%);
+  }
+
+  to {
+    transform: translateY(0%);
+  }
+}

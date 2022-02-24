@@ -3,8 +3,23 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apis: {
+    energy: {
+      url: 'http://localhost:8090/api/energy'
+    },
+    vehicle: {
+      url: 'http://localhost:8090/api/vehicle'
+    },
+    zone: {
+      url: 'http://localhost:8090/api/zone'
+    },
+    users: {
+      url: 'https://47d8e6a7-9be3-4b08-90f3-099caa04bc95.mock.pstmn.io/users'
+    }
+  }
 };
+
 
 /*
  * For easier debugging in development mode, you can import the following file

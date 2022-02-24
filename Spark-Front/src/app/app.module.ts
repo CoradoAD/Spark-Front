@@ -27,6 +27,7 @@ import { ProfilComponent } from './components/profil/profil.component';
 import { ItineraryComponent } from './components/itinerary/itinerary.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,6 +48,7 @@ import { ItineraryComponent } from './components/itinerary/itinerary.component';
     LoginComponent,
     ProfilComponent,
     ItineraryComponent,
+
   ],
   imports: [
     BrowserModule,
