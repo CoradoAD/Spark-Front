@@ -34,14 +34,14 @@ export class MapService {
    */
   setMapOptions(): L.MapOptions {
     this.options = {
-      layers:[tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png', {
+      layers: [tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png', {
         opacity: 0.7,
         maxZoom: 21,
         detectRetina: true,
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       })],
-      zoom:1,
-      center:latLng(43.61424,3.87117, 14)
+      zoom: 1,
+      center: latLng(43.61424, 3.87117, 14)
     };
     return this.options;
   }
@@ -63,7 +63,7 @@ export class MapService {
    * Sync user location on nav itinerary (leaflet-routing-machine)
    * @param navGPS NavGps - actualised GPS info of user
    */
-   syncGPSUserLoc(navGPS: NavGps) {
+  syncGPSUserLoc(navGPS: NavGps) {
     var newLatLngA = new L.LatLng(navGPS.localLat, navGPS.localLon);
     var newLatLngB = new L.LatLng(navGPS.distLat, navGPS.distLon);
     this.routeControl!.setWaypoints([newLatLngA, newLatLngB]);
@@ -84,10 +84,10 @@ export class MapService {
     this.setRouting(this.navGPS);                            // -- Comment this line to Kill Itinerary module
 
     // test routing update
-      // // If Routing machine isRunning
-      // if (this.routingMachineIsRunning) {
-      //   this.syncGPSUserLoc(this.syncNavGPS);
-      // }
+    // // If Routing machine isRunning
+    // if (this.routingMachineIsRunning) {
+    //   this.syncGPSUserLoc(this.syncNavGPS);
+    // }
     // End of test routing update --◊
   }
 
@@ -118,16 +118,16 @@ export class MapService {
       this.routingMachineIsRunning = true;
     }
     this.routeControl = L.Routing.control({
-        waypoints: [
-          L.latLng(localLat, localLon),
-          L.latLng(distLat, distLon)
-        ],
-        show: true,
-        addWaypoints: false,
-        showAlternatives: false,
-        containerClassName: 'contClass',
-        alternativeClassName: 'altNav',
-      }).addTo(this.map);
+      waypoints: [
+        L.latLng(localLat, localLon),
+        L.latLng(distLat, distLon)
+      ],
+      show: true,
+      addWaypoints: false,
+      showAlternatives: false,
+      containerClassName: 'contClass',
+      alternativeClassName: 'altNav',
+    }).addTo(this.map);
   }
 
 }

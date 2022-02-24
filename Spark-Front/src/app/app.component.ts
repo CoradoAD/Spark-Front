@@ -33,13 +33,7 @@ export class AppComponent {
     }
   }
 
-  receiveMap(map: Map) {
-    this.map = map;
-  }
 
-  receiveZoom(zoom: number) {
-    this.zoom = zoom;
-  }
 
   logout(): void {
     this.tokenStorageService.signOut();
