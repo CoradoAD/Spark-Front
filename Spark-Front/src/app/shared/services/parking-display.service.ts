@@ -12,38 +12,41 @@ const PARKING_ICON_SIZE=20;
 /**
  * Service permettant de gerer l'affichage des parkings sur la carte
  */
-export class ParkingDisplayService {  
+export class ParkingDisplayService {
   map!: Map;
   parkIcon? : L.Icon;
-  selectedParking$=new BehaviorSubject<Parking|undefined>(undefined);  
+  selectedParking$=new BehaviorSubject<Parking|undefined>(undefined);
 
   constructor() { }
   /**
    * Ajoute une icone representant un parking sur la carte
-   * @param parking 
+   * @param parking
    */
-  addParkingOnMap(parking: Parking){   
-    console.log("addParkingOnMap"); 
+  addParkingOnMap(parking: Parking){
+    // console.log("addParkingOnMap");
     L.marker([parking.Ylat, parking.Xlong], {icon: this.getParkingIcon()})
     .on('click', ()=>{
-      alert(parking.nom+" "+parking.freeCapacity);  // popup de test a supprimmer    
+      alert(parking.nom+" "+parking.freeCapacity);  // popup de test a supprimmer
       this.selectedParking$.next(parking)})
-    .addTo(this.map);   
+    .addTo(this.map);
+
+    console.log(this.selectedParking$.value);
+
   }
   /**
    * crée et retourne l'icone pour un parking
-   * @returns 
+   * @returns
    */
   getParkingIcon():L.Icon{
-    if(!this.parkIcon){      
+    if(!this.parkIcon){
         this.parkIcon= L.icon({
-        iconUrl: IconPath.PARKICONPATH,        
+        iconUrl: IconPath.PARKICONPATH,
         iconSize:     [PARKING_ICON_SIZE, PARKING_ICON_SIZE], // size of the icon
         // shadowSize:   [50, 64], // size of the shadow
         // iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
       // shadowAnchor: [4, 62],  // the same for the shadow
       // popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
-     });  
+     });
    }
      return this.parkIcon;
   }
@@ -56,5 +59,5 @@ export class ParkingDisplayService {
 enum IconPath{
   PARKICONPATH ="assets/parking/spark_park.svg"
 }
-  
-  
+
+

@@ -23,7 +23,7 @@ export class MapComponent implements OnInit, OnDestroy {
   @Input() options!: L.MapOptions;
   public map!: L.Map;
   public zoom!: number;
-  constructor(private parkingDisplayService: ParkingDisplayService, private parkingService:ParkingService,public mapService: MapService ){ 
+  constructor(private parkingDisplayService: ParkingDisplayService, private parkingService:ParkingService,public mapService: MapService ){
 
      this.setMapOptions();
   }
@@ -31,6 +31,7 @@ export class MapComponent implements OnInit, OnDestroy {
     this.options = this.mapService.setMapOptions();
    }
   ngOnInit() {
+
   }
   /**
    * Call to leaflet map initializer & param
@@ -39,6 +40,8 @@ export class MapComponent implements OnInit, OnDestroy {
   onMapReady(map: L.Map) {
     this.mapService.MapReady(map);
     console.log("after on map ready");
+
+
   }
 
   ngOnDestroy() {

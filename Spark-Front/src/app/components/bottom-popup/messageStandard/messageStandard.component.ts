@@ -10,6 +10,8 @@ import { VehicleService } from 'src/app/shared/services/vehicle.service';
 import { UserService } from 'src/app/shared/services/userMooc.service';
 import { GainService } from 'src/app/shared/services/gain.service';
 import { TokenStorageService } from 'src/app/shared/services/token-storage.service';
+import { ParkingDisplayService } from 'src/app/shared/services/parking-display.service';
+import { Parking } from 'src/app/shared/models/parking';
 
 @Component({
   selector: 'app-messageStandard',
@@ -29,12 +31,15 @@ export class MessageStandardComponent implements OnInit, OnDestroy {
   user!: User;
   zone!: Zone | null;
   vehicle!: Vehicle;
-  parking!: ParkingClass;
+
+  
+  parking!: Parking;
 
 
   public currentZone$ = new BehaviorSubject<Zone | null>(null);
   public currentParking$ = new BehaviorSubject<ParkingClass | null>(null);
   public currentVehicle$ = new BehaviorSubject<Vehicle | null>(null);
+
   currentUser!: any;
 
   /**
@@ -58,17 +63,24 @@ export class MessageStandardComponent implements OnInit, OnDestroy {
     private emissionService: EmissionService,
     private vehicleSercice: VehicleService,
     private gainService: GainService,
-    private token: TokenStorageService
+    private token: TokenStorageService,
+    private parkingDisplayService : ParkingDisplayService
 
   ) {}
 
   ngOnInit(): void {
+    setTimeout(() => this.test(), 6000);
+  }
+
+
+  test() {
 
     this.currentUser = this.token.getUser();
     console.log(this.currentUser);
 
-    this.getParking();
-    this.parking = this.currentParking$.value!;
+    this.parking = this.parkingDisplayService.selectedParking$.value!;
+    console.log("parking choisi" + this.parking);
+
     this.getZoneDetailsOfParking(this.parking);
 
     this.getVehicleUser(this.currentUser.id);
@@ -83,11 +95,11 @@ export class MessageStandardComponent implements OnInit, OnDestroy {
    *Get details zone of parking
    * @param parkingparking choosed by user
    */
-  getZoneDetailsOfParking(parking: ParkingClass) {
-    console.log('Le parking est : ' + parking.nom);
+  getZoneDetailsOfParking(parking: Parking) {
+    console.log('Le parking MOOC est : ' + parking.nom + parking.typo_fonct);
 
     this.sub = this.zoneService.getAllZone().subscribe((arrayResult) => {
-      let result = arrayResult.find((zone) => zone.nom == parking.zone)!;
+      let result = arrayResult.find((zone) => zone.nom == parking.typo_fonct)!;
       this.currentZone$.next(result);
       this.zone = this.currentZone$.value;
     });
@@ -112,14 +124,8 @@ export class MessageStandardComponent implements OnInit, OnDestroy {
 
     this.zone = this.currentZone$.value;
     this.vehicle = this.currentVehicle$.value!;
-
     let distanceKmDone = this.emissionService.distanceLookForPark(this.zone!);
-
-    console.log(distanceKmDone);
-
     this.emission = this.emissionService.emissionConsumedByRoute(distanceKmDone,this.vehicle);
-
-    console.log(this.emission);
   }
 
   /**
