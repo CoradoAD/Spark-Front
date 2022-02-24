@@ -18,27 +18,27 @@ export class ParkingDisplayService {
   selectedParking$=new BehaviorSubject<Parking|undefined>(undefined);  
   layer?:L.LayerGroup;
   constructor() { 
-
-    this.layer=new L.LayerGroup();
+   this.initLayerGroup();
   }
-
-
-  createLayerGroup(){
-    var layer=L.layerGroup();
-    layer.addLayer(L.marker([23,56]))
+  private initLayerGroup(){
+    this.layer=L.layerGroup();
+  }
+  removeParkingsFromMap(){
+    console.log("remove parking");
+    // if(this.layer)this.map.removeLayer(this.layer);
+    // this.initLayerGroup();
+    this.layer?.clearLayers();
   }
   /**
    * Ajoute une icone representant un parking sur la carte
    * @param parking 
    */
   addParkingOnMap(parking: Parking){   
-    console.log("addParkingOnMap"); 
-    
-    const marker=L.marker([parking.Ylat, parking.Xlong], {icon: this.getParkingIcon()})
+    var marker=L.marker([parking.Ylat, parking.Xlong], {icon: this.getParkingIcon()})
     .on('click', ()=>{
       alert(parking.nom+" "+parking.freeCapacity);  // popup de test a supprimmer    
       this.selectedParking$.next(parking)})
-    .addTo(this.map);  
+    this.layer?.addLayer(marker).addTo(this.map);
     
   }
   /**

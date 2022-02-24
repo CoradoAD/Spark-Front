@@ -6,9 +6,14 @@ import { NavGps } from '../models/nav-gps';
 import 'leaflet-routing-machine';
 import { ParkingDisplayService } from './parking-display.service';
 import { ParkingService } from './parking.service';
-import { Subscription } from 'rxjs';
+import { interval, Subscription } from 'rxjs';
 import { Parking } from '../models/parking';
 
+/**
+ * constante representant un interval de 1 minute exprimé en ms
+ */
+ const UPDATE_PARKING_INTERVAL=5000;
+ const SEARCH_RADIUS=5;
 @Injectable({
   providedIn: 'root'
 })
@@ -26,7 +31,10 @@ export class MapService {
    * parking selectionné lorsque l'on clique sur la carte
    */
   selectedParking:Parking|undefined;
-
+   /**
+   * observable notifiant ses abbonnés à intervalle régulier
+   */
+    obs$ = interval(UPDATE_PARKING_INTERVAL);
   receiveMap(map: Map) {
     this.map = map;
   }
@@ -82,17 +90,12 @@ export class MapService {
    * @param map L.Map
    */
   MapReady(map: L.Map, navNeed?: boolean, navGPS?: NavGps) {
-    console.log("onMapready");
     this.parkingDisplayService.map=map;
-    console.log("Nav GPS init"+navGPS)
-    // if(navGPS)this.parkingService.setNavGPS(navGPS);
-    // const obs$ = interval(1000);
-    // obs$.subscribe((v) => console.log("received: ", v));
-      this.sub = this.parkingService.parkingsAround$.subscribe((parkings) => {  
-      this.parkings = parkings;
-      this.initParkingWiew();      
+    this.sub = this.parkingService.parkingsAround$.subscribe((parkings) => {  
+     this.parkings = parkings;
+     this.initParkingWiew();      
     });
-    this.parkingService.updateParkingList();
+    this.updateParkingList();
     this.parkingDisplayService.selectedParking$.subscribe((parking) => {  
       this.selectedParking=parking;        
     });
@@ -111,19 +114,35 @@ export class MapService {
       // }
     // End of test routing update --◊
   }
+  
 
   /**
    * affiche  tous les parkings sur la carte
    */
    initParkingWiew(){
-     
-    // this.parkingDisplayService.map=this.map;
     console.log("init Parking view");   
-    console.log(this.parkings);   
+    console.log(this.parkings);  
+    this.parkingDisplayService.removeParkingsFromMap(); 
     this.parkings.forEach(parking => {       
       this.parkingDisplayService.addParkingOnMap(parking);
     });
     // this.map$.emit(this.map);
+  }
+
+  /**
+   * fonction mettant à jour la liste des parkings a intervalle régulier
+   */
+   updateParkingList(){
+    this.obs$.subscribe((v) =>{
+      console.log("update Parking");
+      console.log("nav GPS:"+ this.syncNavGPS);
+      console.log(v);
+      if(this.syncNavGPS){
+        this.parkingService.getParkingListAround(this.syncNavGPS.localLat,this.syncNavGPS.localLon,SEARCH_RADIUS);
+      }
+      
+    }
+    );
   }
 
   /**
