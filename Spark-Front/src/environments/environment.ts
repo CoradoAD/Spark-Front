@@ -4,6 +4,10 @@
 
 export const environment = {
   production: false,
+
+
+  urlApi: 'http://localhost:8090',
+
   apis: {
     energy: {
       url: 'http://localhost:8090/api/energy'

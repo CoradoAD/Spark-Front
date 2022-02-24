@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?> <!-- Created with Vectornator (http://vectornator.io/) --><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg height="100%" stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 512 512" width="100%" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:vectornator="http://vectornator.io" xmlns:xlink="http://www.w3.org/1999/xlink">
+<metadata>
+<vectornator:setting key="IsTimeLapseWatermarkDisabled" value="false"/>
+<vectornator:setting key="UndoHistoryDisabled" value="true"/>
+<vectornator:setting key="VNDimensionsVisible" value="true"/>
+<vectornator:setting key="VNSnapToGuides" value="true"/>
+<vectornator:setting key="WDCMYKEnabledKey" value="false"/>
+<vectornator:setting key="WDDisplayWhiteBackground" value="false"/>
+<vectornator:setting key="WDDynamicGuides" value="false"/>
+<vectornator:setting key="WDGuidesVisible" value="true"/>
+<vectornator:setting key="WDIsolateActiveLayer" value="false"/>
+<vectornator:setting key="WDOutlineMode" value="false"/>
+<vectornator:setting key="WDRulersVisible" value="true"/>
+<vectornator:setting key="WDSnapToEdges" value="false"/>
+<vectornator:setting key="WDSnapToGrid" value="false"/>
+<vectornator:setting key="WDSnapToPoints" value="false"/>
+<vectornator:setting key="WDUnits" value="Pixels"/>
+</metadata>
+<defs/>
+<g id="spark_handi_park" vectornator:layerName="spark_handi_park">
+<path d="M403.543 17.0453L111.703 17.0453C59.9552 17.0453 17.6229 59.3776 17.6229 111.088L17.6229 403.021C17.6229 454.713 59.9552 497.045 111.703 497.045L403.561 497.045C455.291 497.045 497.623 454.713 497.623 403.002L497.623 111.088C497.623 59.3776 455.291 17.0453 403.543 17.0453ZM220.7 68.5345C237.869 68.5345 251.771 82.436 251.771 99.6237C251.771 116.793 237.869 130.713 220.7 130.713C203.549 130.713 189.629 116.793 189.629 99.6237C189.629 82.436 203.549 68.5345 220.7 68.5345ZM211.026 442.381C124.552 442.381 91.0444 369.956 91.0444 318.67C91.0444 275.211 116.281 228.448 161.383 208.584C165.555 206.738 182.097 211.076 182.097 223.482C182.097 230.534 178.386 235.482 175.044 238.362C171.74 241.298 125.383 260.738 125.383 319.076C125.383 377.433 176.724 407.636 211.912 407.636C247.044 407.636 267.74 385.279 273.555 379.519C279.334 373.704 292.164 348.891 292.164 348.891C292.164 348.891 297.149 331.094 309.131 335.23C321.131 339.402 324.454 344.774 324.454 351.384C324.454 357.993 298.331 442.381 211.026 442.381ZM432.527 368.313L400.626 386.941C400.626 386.941 388.22 392.313 377.9 379.501C368.318 367.611 331.543 310.658 331.543 310.658L222.712 310.658C222.712 310.658 201.075 310.676 201.075 289.131C201.075 267.568 201.075 168.614 201.075 168.614C201.075 168.614 201.611 148.621 221.475 148.621C241.321 148.621 242.115 168.614 242.115 168.614L242.115 201.661L304.737 201.661C304.737 201.661 322.921 201.771 322.921 220.824C322.921 239.839 302.06 238.03 302.06 238.03L242.115 238.03L242.115 273.661C242.115 273.661 313.377 273.661 327.629 273.661C341.881 273.661 348.527 278.35 354.306 288.061C362.134 301.298 400.201 358.418 400.201 358.418L417.98 347.267C417.98 347.267 430.829 341.47 436.201 349.759C441.629 357.993 432.527 368.313 432.527 368.313Z" fill="#ffffff" fill-rule="evenodd" opacity="1" stroke="none"/>
+</g>
+</svg>
