@@ -1,17 +1,14 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MapComponent } from './components/map/map.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { PopupErrorMessageComponent } from './components/popup-error-message/popup-error-message.component';
-
 import { BottomPopupInteractiveComponent } from './components/bottom-popup-interactive/bottom-popup-interactive.component';
 import { AddFavoritesComponent } from './components/bottom-popup-interactive/add-favorites/add-favorites.component';
 import { MessageComponent } from './components/bottom-popup-interactive/message/message.component';
-
 import { BottomPopupComponent } from './components/bottom-popup/bottom-popup.component';
 import { FavoriteMessageComponent } from './components/bottom-popup/favoriteMessage/favoriteMessage.component';
 import { MessageStandardComponent } from './components/bottom-popup/messageStandard/messageStandard.component';
@@ -25,6 +22,8 @@ import { BoderUserComponent } from './components/boder-user/boder-user.component
 import { BoderAdminComponent } from './components/boder-admin/boder-admin.component';
 import { ProfilComponent } from './components/profil/profil.component';
 import { ItineraryComponent } from './components/itinerary/itinerary.component';
+import { ParkingsComponent } from './components/parkings/parkings.component';
+import { ParkingComponent } from './components/parkings/parking/parking.component';
 
 
 @NgModule({
@@ -47,17 +46,18 @@ import { ItineraryComponent } from './components/itinerary/itinerary.component';
     LoginComponent,
     ProfilComponent,
     ItineraryComponent,
+    ParkingsComponent,
+    ParkingComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     LeafletModule,
     FormsModule,
-    HttpClientModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 
 })
-
 export class AppModule { }
