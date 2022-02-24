@@ -9,6 +9,7 @@ import { Vehicle } from 'src/app/shared/models/vehicle';
 import { VehicleService } from 'src/app/shared/services/vehicle.service';
 import { UserService } from 'src/app/shared/services/userMooc.service';
 import { GainService } from 'src/app/shared/services/gain.service';
+import { TokenStorageService } from 'src/app/shared/services/token-storage.service';
 
 @Component({
   selector: 'app-messageStandard',
@@ -18,11 +19,11 @@ import { GainService } from 'src/app/shared/services/gain.service';
 export class MessageStandardComponent implements OnInit, OnDestroy {
 
   importantMessage: string = 'important message'; //to be modified as appropriate
-  message: string = 'Lorem ipsum dolor sit amet'; //to be modified as appropriate
+  message: string = 'Bravo, vous avez fait des économies et gagné des points'; //to be modified as appropriate
 
   emission!: number;
   gain!: number;
-  boolean: boolean = false;
+  isDisplay: boolean = false;
 
   // Infomation from the parents
   user!: User;
@@ -34,6 +35,7 @@ export class MessageStandardComponent implements OnInit, OnDestroy {
   public currentZone$ = new BehaviorSubject<Zone | null>(null);
   public currentParking$ = new BehaviorSubject<ParkingClass | null>(null);
   public currentVehicle$ = new BehaviorSubject<Vehicle | null>(null);
+  currentUser!: any;
 
   /**
    *MOOC parking
@@ -55,16 +57,22 @@ export class MessageStandardComponent implements OnInit, OnDestroy {
     private zoneService: ZoneService,
     private emissionService: EmissionService,
     private vehicleSercice: VehicleService,
-    private userService: UserService,
-    private gainService: GainService
+    private gainService: GainService,
+    private token: TokenStorageService
+
   ) {}
 
   ngOnInit(): void {
 
+    this.currentUser = this.token.getUser();
+    console.log(this.currentUser);
+
     this.getParking();
     this.parking = this.currentParking$.value!;
     this.getZoneDetailsOfParking(this.parking);
-    this.getVehicleUser(1);
+
+    this.getVehicleUser(this.currentUser.id);
+
     setTimeout(() => this.calculEmission(), 500);
     setTimeout(() => this.calGainSpark(this.emission), 500);
   }
@@ -89,21 +97,29 @@ export class MessageStandardComponent implements OnInit, OnDestroy {
    *Get user's vehicle
    * @param id of user's vehicle
    */
-  getVehicleUser(id: number) {
+  getVehicleUser(id : number) {
     this.sub = this.vehicleSercice.getAllVehicle().subscribe((arrayResult) => {
-      let result = arrayResult.find((vehicle) => vehicle.idVehicle == id)!;
+      let result = arrayResult.find((vehicle) => vehicle.vehicleUser.idUtilisateur == id)!;
       this.currentVehicle$.next(result);
+
     });
   }
+
 /**
  * calculate the emission consume when looking for parking
  */
   calculEmission() {
+
     this.zone = this.currentZone$.value;
     this.vehicle = this.currentVehicle$.value!;
+
     let distanceKmDone = this.emissionService.distanceLookForPark(this.zone!);
-    this.emission = this.emissionService.emissionConsumedByRoute(distanceKmDone,this.vehicle
-    );
+
+    console.log(distanceKmDone);
+
+    this.emission = this.emissionService.emissionConsumedByRoute(distanceKmDone,this.vehicle);
+
+    console.log(this.emission);
   }
 
   /**
@@ -113,6 +129,7 @@ export class MessageStandardComponent implements OnInit, OnDestroy {
   public calGainSpark(emissionCarbon : number) {
     this.gain = this.gainService.calGainSpark(emissionCarbon);
 	}
+
 
   ngOnDestroy(): void {
     this.sub.unsubscribe();

@@ -1,8 +1,7 @@
-<div *ngIf="boolean; else blockElse" class="container">
+<div *ngIf="isDisplay; else blockElse" class="container">
   <p class="message-important">{{importantMessage}}</p>
   <p class="message">{{message}}</p>
 </div>
-
 
 <ng-template #blockElse>
   <div class="container">
@@ -11,8 +10,8 @@
     class="message">{{message}}</p>
 
     <div class="information">
-      <p class="message">{{ emission }}g de CO2 <br>économisés</p>
-      <p class="message">{{ gain }} points spark ! <br>gagnés</p>
+      <p class="message">{{ emission }}g de CO2 économisés</p>
+      <p class="message">{{ gain }} points spark gagnés !</p>
 
     </div>
   </div>
