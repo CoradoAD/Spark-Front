@@ -25,8 +25,6 @@ export class ParkingDisplayService {
   }
   removeParkingsFromMap(){
     console.log("remove parking");
-    // if(this.layer)this.map.removeLayer(this.layer);
-    // this.initLayerGroup();
     this.layer?.clearLayers();
   }
   /**

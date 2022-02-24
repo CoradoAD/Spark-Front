@@ -18,7 +18,7 @@ export class ItineraryComponent implements OnInit {
       distLat: 43.61424,
       distLon: 3.87117,
     };
-    this.setRouting(this.navGPS);
+    // this.setRouting(this.navGPS);
     this.syncGPSUserLoc(this.navGPS);
     // End test lat/long --◊
   }
