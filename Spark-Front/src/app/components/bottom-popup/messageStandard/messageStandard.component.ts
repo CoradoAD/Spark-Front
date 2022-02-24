@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { BehaviorSubject, filter, find, Observable, Subscription } from 'rxjs';
 import { ParkingClass } from 'src/app/shared/models/parkingMooc';
 import { User } from 'src/app/shared/models/userMooc';
@@ -32,7 +32,7 @@ export class MessageStandardComponent implements OnInit, OnDestroy {
   zone!: Zone | null;
   vehicle!: Vehicle;
 
-  
+  @Input()
   parking!: Parking;
 
 
@@ -69,7 +69,7 @@ export class MessageStandardComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    setTimeout(() => this.test(), 6000);
+    setTimeout(() => this.test(), 5000);
   }
 
 
@@ -78,7 +78,6 @@ export class MessageStandardComponent implements OnInit, OnDestroy {
     this.currentUser = this.token.getUser();
     console.log(this.currentUser);
 
-    this.parking = this.parkingDisplayService.selectedParking$.value!;
     console.log("parking choisi" + this.parking);
 
     this.getZoneDetailsOfParking(this.parking);
@@ -124,6 +123,7 @@ export class MessageStandardComponent implements OnInit, OnDestroy {
 
     this.zone = this.currentZone$.value;
     this.vehicle = this.currentVehicle$.value!;
+    
     let distanceKmDone = this.emissionService.distanceLookForPark(this.zone!);
     this.emission = this.emissionService.emissionConsumedByRoute(distanceKmDone,this.vehicle);
   }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Parking } from 'src/app/shared/models/parking';
+import { ParkingDisplayService } from 'src/app/shared/services/parking-display.service';
 import { ZoneService } from 'src/app/shared/services/zone.service';
 
 @Component({
@@ -8,10 +10,18 @@ import { ZoneService } from 'src/app/shared/services/zone.service';
 })
 export class BottomPopupComponent implements OnInit {
 
-  constructor() { }
+
+  parking!: Parking;
+
+  constructor(private parkingDisplayService : ParkingDisplayService) { }
 
   ngOnInit(): void {
 
+    setTimeout(() => this.getParking(), 5000);
+  }
+
+  getParking() {
+    this.parking = this.parkingDisplayService.selectedParking$.value!;
   }
 
 }
