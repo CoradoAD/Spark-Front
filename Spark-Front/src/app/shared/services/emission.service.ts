@@ -13,9 +13,9 @@ export class EmissionService {
 	 *
 	 */
   public distanceLookForPark(zone: Zone) {
-    let time = Math.floor(zone.minute / 60 + 1) // result in hour
+    let time = zone.minute / 60 + 1 // result in hour
     let speed = 20;
-    return speed * time;
+    return Math.floor(speed * time);
   }
 
     /**

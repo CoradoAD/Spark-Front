@@ -10,8 +10,7 @@ import { map } from 'leaflet';
 })
 export class ZoneService {
 
-  public currentZone$ = new BehaviorSubject<Zone|null>(null);
-
+  
   constructor(private http: HttpClient) {}
 
   getAllZone(): Observable<Zone[]> {
