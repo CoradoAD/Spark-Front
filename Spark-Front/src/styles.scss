@@ -4,70 +4,159 @@
   padding: 0;
 }
 
-// -- NAV ROUTING MACHINE -- //
+// -- NAV & ROUTING MACHINE -- //
 //
-// Hide zoom option
+// Hide leaflet map zoom option
 .leaflet-control-zoom.leaflet-bar.leaflet-control {
   display: none !important;
 }
+
 // - Nav routing container - //
-.leaflet-top.leaflet-right {
-  width: 100% !important;
-}
-.leaflet-right .leaflet-control {
-  margin: 0 !important;
-}
-.contClass {
-  background-color: rgba(253, 253, 253, 0.650) !important;
-  border-radius: 15px;
-  width: 100% !important;
-}
-  .leaflet-routing-alt {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  .leaflet-top.leaflet-right {
+    width: 100% !important;
+  }
+  .leaflet-right .leaflet-control {
+    margin: 0 !important;
+  }
+  .contClass {
+    background-color: rgba(253, 253, 253, 0.650) !important;
+    border-radius: 15px;
+    width: 100% !important;
+  }
+  // Hide unecessary 'alternative itinerary'
+  .altNav:nth-of-type(2) {
+    display: none !important;
+  }
+  // Nav alternative itinerary
+    .leaflet-routing-alt {
+      // display: flex;
+      // flex-direction: column;
+      // justify-content: center;
+      text-align: center;
+    }
+    .contClass tbody tr {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+    // Nav routing: First step/instruction
+    .contClass tbody tr:nth-child(2) {
+      color: green !important;
+      font-weight: 700;
+      font-size: 1.5em !important;
+    }
+      // Hide unnecessary instructions
+      .contClass tbody tr:nth-child(1n+4) {
+        display: none;
+      }
+      .contClass tbody tr:nth-child(1) {
+        display: none;
+      }
+        // - Nav alt.: title & subtitle- //
+        .leaflet-routing-alt h2 {
+          font-size: 1.5em !important;
+          text-align: center;
+          display: inline;
+        }
+        .leaflet-routing-alt h2::before {
+          content: 'Itinéraire par : ' !important;
+        }
+        .leaflet-routing-alt h3 {
+          text-align: center;
+          font-size: 1.5em !important;
+          display: inline;
+          margin-left: 10px;
+        }
+        .leaflet-routing-alt h3::before {
+          content: '-';
+          margin: 0 10px 0 0;
+        }
+        // - Nav alt.: steps/instructions - //
+        .leaflet-routing-alt table {
+          max-width: 100%;
+          margin: 0 auto;
+        }
+          .leaflet-routing-alt tr {
+            display: flex;   // display flex écrase none (a corriger) + Passer le background image en SVG + redimenssionner
+            flex-direction: row !important;
+            justify-content: center !important;
+          }
+          .leaflet-routing-alt td {
+            font-size: 1em;
+          }
+          .leaflet-routing-icon {
+
+          }
+// - Nav Markers - //
+  // .sparkUserMarker {
+  //   background-image: url('./assets/ico/map/spark_routing_user-loc.svg') !important;
+  // }
+    // .leaflet-marker-pane img {
+    //   display: none !important;
+    // }
+    // .leaflet-marker-pane::after {
+    //   content: 'A' !important;
+    //   background-image: url('./assets/ico/map/spark_routing_user-loc.svg') !important;
+    // }
+  // .leaflet-marker-pane img {
+  //   mask-image: image(url('./assets/ico/map/spark_routing_dest-marker.svg'), skyblue);
+  // }
+  .leaflet-marker-icon:nth-child(1) {
+    background-image: url('./assets/ico/map/spark_routing_user-loc.svg') !important;
+  }
+  .leaflet-marker-icon:nth-child(2) {
+    background-image: url('./assets/ico/map/spark_routing_dest-marker.svg') !important;
+  }
+  .leaflet-routing-icon {
+    background-size: auto !important;
+    background-repeat: unset !important;
+    background-position: 0 0 !important;
+    margin: 5px !important;
   }
 
-  .contClass tbody tr:nth-child(2) {
-    color: green !important;
-    font-weight: 700;
-    font-size: 1.5em !important;
+  // - Set custom Spark icons for itinerary steps - //
+  .contClass tbody tr:nth-child(2) span {    // remplacer avec 'parent-img:nth-child()'
+    height: 50px !important;
+    width: 50px !important;
   }
-    // Hide unnecessary instructions
-    .contClass tbody tr:nth-child(1n+4) {
-      display: none;
-    }
-    .contClass tbody tr:nth-child(1) {
-      display: none;
-    }
-
-      // - Nav alt. title - //
-      .leaflet-routing-alt h2 {
-        font-size: 1.5em !important;
-        text-align: center;
-      }
-      .leaflet-routing-alt h2::before {
-        content: 'Itinéraire par : ' !important;
-      }
-      .leaflet-routing-alt h3 {
-        text-align: center;
-        font-size: 1.5em !important;
-      }
-        // - Nav alt. steps - //
-        .leaflet-routing-alt tr {
-          display: flex;   // display flex écrase none (a corriger) + Passer le background image en SVG + redimenssionner
-          flex-direction: row !important;
-          justify-content: center !important;
-        }
-        .leaflet-routing-alt td {
-          font-size: 1em;
-        }
-        .leaflet-routing-icon {
-
-        }
-
-// Nav alternative itinerary
-.altNav:nth-of-type(2) {
-  display: none !important;
-}
+  .contClass tbody tr:nth-child(3) span {    // remplacer avec 'parent-img:nth-child()'
+    height: 20px !important;
+    width: 20px !important;
+  }
+  .leaflet-routing-icon-depart {
+    background-image: url('./assets/ico/itinerary/route-nav-a.svg') !important;
+  }
+  .leaflet-routing-icon-enter-roundabout {
+    background-image: url('./assets/ico/itinerary/route-nav-roundabout.svg') !important;
+  }
+  .leaflet-routing-icon-bear-right {
+    background-image: url('./assets/ico/itinerary/route-nav-up-right.svg') !important;  // bear-right
+  }
+  .leaflet-routing-icon-bear-left {
+    background-image: url('./assets/ico/itinerary/route-nav-up-left.svg') !important;  // bear-left
+  }
+  .leaflet-routing-icon-turn-right {
+    background-image: url('./assets/ico/itinerary/route-nav-right.svg') !important;
+  }
+  .leaflet-routing-icon-turn-left {
+    background-image: url('./assets/ico/itinerary/route-nav-left.svg') !important;
+  }
+  .leaflet-routing-icon-sharp-right {
+    background-image: url('./assets/ico/itinerary/route-nav-down_right.svg') !important;
+  }
+  .leaflet-routing-icon-sharp-left {
+    background-image: url('./assets/ico/itinerary/route-nav-down_left.svg') !important;
+  }
+  .leaflet-routing-icon-continue {
+    background-image: url('./assets/ico/itinerary/route-nav-up.svg') !important;
+  }
+  .leaflet-routing-icon-u-turn {
+    background-image: url('./assets/ico/itinerary/route-nav-turn-back.svg') !important;
+  }
+  .leaflet-routing-icon-via {
+    background-image: url('./assets/ico/itinerary/route-nav-via.svg') !important;
+  }
+  .leaflet-routing-icon-arrive {
+    background-image: url('./assets/ico/itinerary/route-nav-end.svg') !important;
+  }
 

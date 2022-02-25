@@ -5,6 +5,10 @@ import { latLng, Map, tileLayer } from 'leaflet';
 import { NavGps } from '../models/nav-gps';
 import 'leaflet-routing-machine';
 
+/**
+ * Map service for all map actions
+ * Set 'leaflet-map' and 'leaflet-routing-machine'
+ */
 @Injectable({
   providedIn: 'root'
 })
@@ -17,6 +21,15 @@ export class MapService {
   private routingMachineIsRunning = false;
   public routeControl?: L.Routing.Control;
 
+  public myUserIcon = L.icon({
+    iconUrl: './assets/ico/map/spark_routing_user-loc.svg',
+    iconSize: [38, 95],
+    iconAnchor: [22, 94],
+    popupAnchor: [-3, -76],
+    // shadowUrl: 'my-icon-shadow.png',
+    // shadowSize: [68, 95],
+    // shadowAnchor: [22, 94]
+});
 
   receiveMap(map: Map) {
     this.map = map;
@@ -41,12 +54,14 @@ export class MapService {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       })],
       zoom:1,
-      center:latLng(43.61424,3.87117, 14)
+      center:latLng(43.61424,3.87117, 14),
     };
     return this.options;
   }
 
-  constructor() { }
+
+  constructor(
+  ) { }
 
   /**
    * Initiate Routing (itinerary) service/module
@@ -56,7 +71,7 @@ export class MapService {
    */
   setRouting(navGPS: NavGps) {
     this.routingModule(navGPS.localLat, navGPS.localLon, navGPS.distLat, navGPS.distLon);
-    setInterval(() => this.syncGPSUserLoc(this.syncNavGPS), 500)
+    // setInterval(() => this.syncGPSUserLoc(this.syncNavGPS), 500)
   }
 
   /**
@@ -114,20 +129,31 @@ export class MapService {
   */
   routingModule(localLat: number, localLon: number, distLat: number, distLon: number): void {   // arguments 'lat' & 'lon' => possibilité de 'latLong' [lat, lon]
     console.log('routingmodule');
+    let actualLoc = new L.LatLng(localLat, localLon)
+
     if (!this.routingMachineIsRunning) {
       this.routingMachineIsRunning = true;
     }
     this.routeControl = L.Routing.control({
         waypoints: [
           L.latLng(localLat, localLon),
-          L.latLng(distLat, distLon)
+          L.latLng(distLat, distLon),
         ],
+        lineOptions: {
+          styles: [
+            { color: 'green', opacity: 1, weight: 5 },
+          ],
+          extendToWaypoints: true,
+          missingRouteTolerance: 1,
+        },
         show: true,
         addWaypoints: false,
         showAlternatives: false,
         containerClassName: 'contClass',
         alternativeClassName: 'altNav',
       }).addTo(this.map);
+      // center map in user-loc
+      this.map.panTo(actualLoc);
   }
 
 }

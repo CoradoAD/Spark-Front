@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?> <!-- Created with Vectornator (http://vectornator.io/) --><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg height="100%" stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 512 512" width="100%" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:vectornator="http://vectornator.io" xmlns:xlink="http://www.w3.org/1999/xlink">
+<metadata>
+<vectornator:setting key="IsTimeLapseWatermarkDisabled" value="false"/>
+<vectornator:setting key="UndoHistoryDisabled" value="true"/>
+<vectornator:setting key="VNDimensionsVisible" value="true"/>
+<vectornator:setting key="VNSnapToGuides" value="true"/>
+<vectornator:setting key="WDCMYKEnabledKey" value="false"/>
+<vectornator:setting key="WDDisplayWhiteBackground" value="false"/>
+<vectornator:setting key="WDDynamicGuides" value="false"/>
+<vectornator:setting key="WDGuidesVisible" value="true"/>
+<vectornator:setting key="WDIsolateActiveLayer" value="false"/>
+<vectornator:setting key="WDOutlineMode" value="false"/>
+<vectornator:setting key="WDRulersVisible" value="true"/>
+<vectornator:setting key="WDSnapToEdges" value="false"/>
+<vectornator:setting key="WDSnapToGrid" value="false"/>
+<vectornator:setting key="WDSnapToPoints" value="false"/>
+<vectornator:setting key="WDUnits" value="Pixels"/>
+</metadata>
+<defs>
+<clipPath id="TextBounds">
+<rect height="476.327" width="396.814" x="78.5647" y="-0.230311"/>
+</clipPath>
+</defs>
+<g id="route-nav-a" vectornator:layerName="route-nav-a">
+<path clip-path="url(#TextBounds)" d="M372.741 260.939L414.269 349.928C418.224 358.131 421.52 363.514 424.157 366.078C426.793 368.641 430.822 370.362 436.242 371.241C446.788 372.853 452.062 378.199 452.062 387.281C452.062 397.975 445.617 405.665 432.726 410.353C419.835 415.04 398.742 417.384 369.445 417.384C336.339 417.384 311.803 415.992 295.836 413.209C288.512 411.891 282.689 409.217 278.368 405.189C274.047 401.161 271.886 396.29 271.886 390.577C271.886 386.183 273.021 382.777 275.292 380.36C277.562 377.943 281.774 375.709 287.926 373.658C294.811 371.315 298.253 367.36 298.253 361.793C298.253 351.979 292.321 346.193 280.455 344.435C267.711 342.677 249.767 341.798 226.622 341.798C207.14 341.798 195.494 342.97 191.686 345.314C189.342 346.778 187.291 349.415 185.533 353.224C183.776 357.032 182.897 360.694 182.897 364.21C182.897 367.433 183.519 369.52 184.764 370.472C186.01 371.424 190.075 372.999 196.959 375.196C205.895 377.833 210.363 383.107 210.363 391.017C210.363 408.448 189.489 417.164 147.741 417.164C124.01 417.164 106.578 415.553 95.4456 412.33C85.1917 409.254 80.0647 402.516 80.0647 392.115C80.0647 387.574 81.2 384.059 83.4705 381.569C85.741 379.078 89.806 376.808 95.6653 374.757C105.187 371.388 112.401 366.664 117.308 360.585C122.216 354.506 129.21 341.505 138.292 321.583L169.274 253.688C180.7 228.785 188.353 210.145 192.235 197.767C196.117 185.389 198.131 173.268 198.278 161.403C198.424 148.805 199.193 140.052 200.585 135.145C201.976 130.238 205.089 125.441 209.923 120.753C220.031 110.499 232.921 105.372 248.595 105.372C263.39 105.372 277.526 111.158 291.002 122.731C309.752 138.551 336.998 184.62 372.741 260.939ZM219.811 288.624L262.877 288.624C270.787 288.624 274.742 286.866 274.742 283.351C274.742 278.517 269.249 266.652 258.263 247.755C253.283 239.112 249.474 233.326 246.837 230.397C244.2 227.467 241.417 226.002 238.488 226.002C233.214 226.002 228.82 230.909 225.304 240.724C224.718 242.042 222.594 247.242 218.932 256.324C212.78 271.266 209.703 280.201 209.703 283.131C209.703 286.793 213.073 288.624 219.811 288.624Z" fill="#000000" fill-rule="evenodd" opacity="1" stroke="none"/>
+</g>
+</svg>

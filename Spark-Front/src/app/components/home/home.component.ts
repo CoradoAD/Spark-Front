@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ItineraryDisplayService } from 'src/app/shared/services/itinerary-display.service';
 import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
@@ -9,7 +10,10 @@ import { UserService } from 'src/app/shared/services/user.service';
 export class HomeComponent implements OnInit {
   content?: string;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, public itineraryDysplayServ: ItineraryDisplayService) {
+    this.itineraryDysplayServ.setMapMarker();
+
+  }
 
   ngOnInit(): void {
     this.userService.getPublicContent().subscribe(

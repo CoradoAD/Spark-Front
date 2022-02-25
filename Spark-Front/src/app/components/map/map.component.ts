@@ -5,6 +5,7 @@ import * as L from "leaflet";
 import { latLng, tileLayer } from 'leaflet';
 // -> imports 'routing-machine' & 'Graphhopper'
 import 'leaflet-routing-machine';
+import { ItineraryDisplayService } from 'src/app/shared/services/itinerary-display.service';
 import { MapService } from 'src/app/shared/services/map.service';
 
 
@@ -17,7 +18,7 @@ export class MapComponent implements OnDestroy {
   @Input() options!: L.MapOptions;
 
 
-  constructor( public mapService: MapService ) {
+  constructor( public mapService: MapService,  ) {
     this.setMapOptions();
    }
 
