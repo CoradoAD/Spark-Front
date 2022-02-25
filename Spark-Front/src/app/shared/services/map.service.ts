@@ -43,14 +43,17 @@ export class MapService {
    */
   setMapOptions(): L.MapOptions {
     this.options = {
+
       layers:[tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png', {
         opacity: 0.7,
         maxZoom: 21,
+
         detectRetina: true,
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+
       })],
       zoom:1,
-      center:latLng(43.61424,3.87117, 14)
+      center:latLng(43.61424,3.87117, 14),
     };
     return this.options;
   }
@@ -84,13 +87,13 @@ export class MapService {
       this.parkingDisplayService.map=map;
     // const obs$ = interval(1000);
     // obs$.subscribe((v) => console.log("received: ", v));
-    this.sub = this.parkingService.allParkings$.subscribe((parkings) => {  
+    this.sub = this.parkingService.allParkings$.subscribe((parkings) => {
       this.parkings = parkings;
-      this.initParkingWiew();      
+      this.initParkingWiew();
     });
     this.parkingService.getParkingList();
-    this.parkingDisplayService.selectedParking$.subscribe((parking) => {  
-      this.selectedParking=parking;        
+    this.parkingDisplayService.selectedParking$.subscribe((parking) => {
+      this.selectedParking=parking;
     });
     this.map = map;
     this.map$.emit(map);
@@ -111,11 +114,11 @@ export class MapService {
    * affiche  tous les parkings sur la carte
    */
    initParkingWiew(){
-     
+
     // this.parkingDisplayService.map=this.map;
-    console.log("init Parking view");   
-    console.log(this.parkings);   
-    this.parkings.forEach(parking => {       
+    console.log("init Parking view");
+    console.log(this.parkings);
+    this.parkings.forEach(parking => {
       this.parkingDisplayService.addParkingOnMap(parking);
     });
     // this.map$.emit(this.map);
