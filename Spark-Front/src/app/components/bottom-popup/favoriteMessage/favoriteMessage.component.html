@@ -1,7 +1,11 @@
 <div class="container">
   <img [src]="iconPath" alt="star" >
-  <p class="favorite-message">{{ message }}</p>
-</div>
+
+  <div *ngIf="parking">
+    <p class="favorite-message">{{"Parking " + parking.nom }}</p>
+  </div>
+
+  </div>
 
 
 

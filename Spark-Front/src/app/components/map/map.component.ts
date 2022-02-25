@@ -2,11 +2,12 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 // -> Imports 'leaflet'
 import * as L from "leaflet";
-import { latLng, tileLayer } from 'leaflet';
 // -> imports 'routing-machine' & 'Graphhopper'
 import 'leaflet-routing-machine';
-import { ItineraryDisplayService } from 'src/app/shared/services/itinerary-display.service';
 import { MapService } from 'src/app/shared/services/map.service';
+
+import { ParkingDisplayService } from 'src/app/shared/services/parking-display.service';
+import { ParkingService } from 'src/app/shared/services/parking.service';
 
 
 @Component({
@@ -14,16 +15,27 @@ import { MapService } from 'src/app/shared/services/map.service';
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss']
 })
-export class MapComponent implements OnDestroy {
+
+export class MapComponent implements OnInit, OnDestroy {
+  @Output() map$: EventEmitter<L.Map> = new EventEmitter;
+  @Output() zoom$: EventEmitter<number> = new EventEmitter;
   @Input() options!: L.MapOptions;
+  public map!: L.Map;
+  public zoom!: number;
 
-
-  constructor( public mapService: MapService,  ) {
+  constructor(
+    private parkingDisplayService: ParkingDisplayService,
+    private parkingService: ParkingService,
+    public mapService: MapService
+    ) {
     this.setMapOptions();
-   }
+  }
 
-   setMapOptions() {
+  setMapOptions() {
     this.options = this.mapService.setMapOptions();
+  }
+
+  ngOnInit(): void {
   }
 
   /**
@@ -37,6 +49,7 @@ export class MapComponent implements OnDestroy {
   ngOnDestroy() {
     this.mapService.map.clearAllEventListeners();
     this.mapService.map.remove();
-  };
+  }
 
 }
+

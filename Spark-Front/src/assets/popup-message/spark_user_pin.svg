@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?> <!-- Created with Vectornator (http://vectornator.io/) --><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg height="100%" stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 512 512" width="100%" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:vectornator="http://vectornator.io" xmlns:xlink="http://www.w3.org/1999/xlink">
+<metadata>
+<vectornator:setting key="IsTimeLapseWatermarkDisabled" value="false"/>
+<vectornator:setting key="UndoHistoryDisabled" value="true"/>
+<vectornator:setting key="VNDimensionsVisible" value="true"/>
+<vectornator:setting key="VNSnapToGuides" value="true"/>
+<vectornator:setting key="WDCMYKEnabledKey" value="false"/>
+<vectornator:setting key="WDDisplayWhiteBackground" value="false"/>
+<vectornator:setting key="WDDynamicGuides" value="false"/>
+<vectornator:setting key="WDGuidesVisible" value="true"/>
+<vectornator:setting key="WDIsolateActiveLayer" value="false"/>
+<vectornator:setting key="WDOutlineMode" value="false"/>
+<vectornator:setting key="WDRulersVisible" value="true"/>
+<vectornator:setting key="WDSnapToEdges" value="false"/>
+<vectornator:setting key="WDSnapToGrid" value="false"/>
+<vectornator:setting key="WDSnapToPoints" value="false"/>
+<vectornator:setting key="WDUnits" value="Pixels"/>
+</metadata>
+<defs/>
+<g id="spark_user_pin" vectornator:layerName="spark_user_pin">
+<path d="M257.871 17.8568C149.843 17.8568 62.2644 105.435 62.2644 213.463C62.2644 342.101 189.444 403.681 205.377 418.014C221.648 432.649 235.091 465.457 240.515 484.058C243.147 493.091 250.544 497.661 257.871 497.857C265.215 497.643 272.595 493.073 275.226 484.058C280.65 465.457 294.093 432.667 310.364 418.014C326.297 403.681 453.477 342.101 453.477 213.463C453.477 105.435 365.899 17.8568 257.871 17.8568ZM214.553 195.396C211.405 195.129 206.462 192 205.004 179.641C204.221 173.008 207.333 169.274 209.218 168.1C209.218 168.1 204.524 157.395 204.524 146.779C204.524 115.198 220.154 88.9864 257.871 88.9864C278.232 88.9864 284.544 103.426 284.544 103.426C302.736 103.426 311.218 123.377 311.218 146.779C311.218 158.444 306.523 168.1 306.523 168.1C308.408 169.274 311.52 173.008 310.738 179.641C309.28 192 304.336 195.129 301.189 195.396C299.979 206.919 288.545 221.679 284.544 223.83L284.544 243.089C292.529 269.051 350.606 256.336 362.342 302.357L153.399 302.357C165.136 256.336 223.213 269.051 231.197 243.089L231.197 223.83C227.196 221.696 215.762 206.937 214.553 195.396Z" fill="#ffffff" fill-rule="evenodd" opacity="1" stroke="none"/>
+</g>
+</svg>

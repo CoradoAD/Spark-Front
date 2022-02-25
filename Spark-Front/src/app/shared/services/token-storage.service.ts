@@ -5,7 +5,10 @@ const USER_KEY = 'auth-user';
   providedIn: 'root'
 })
 export class TokenStorageService {
-  constructor() { }
+  constructor() {
+
+  }
+
 
   signOut(): void {
     window.sessionStorage.clear();
@@ -27,10 +30,25 @@ export class TokenStorageService {
 
   public getUser(): any {
     const user = window.sessionStorage.getItem(USER_KEY);
+    //console.log(user);
+
     if (user) {
       return JSON.parse(user);
     }
 
-    return {};
+    return null;
+  }
+  isLoggedIn(): boolean {
+    if (this.getUser() !== null) {
+      console.log("ok")
+      return true
+
+    }
+    else {
+      console.log("pas connecter")
+      this.signOut();
+      return false
+
+    }
   }
 }

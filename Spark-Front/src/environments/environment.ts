@@ -3,7 +3,27 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+
+  urlApi: 'http://localhost:8090',
+
+  apis: {
+    energy: {
+      url: 'http://localhost:8090/api/energy',
+    },
+    vehicle: {
+      url: 'http://localhost:8090/api/vehicle',
+    },
+    parking: {
+      url: 'http://localhost:8090/api/parking',
+    },
+    zone: {
+      url: 'http://localhost:8090/api/zone',
+    },
+    users: {
+      url: 'http://localhost:8090/api/users',
+    },
+  },
 };
 
 /*

@@ -1,4 +1,6 @@
-*, ::before, ::after {
+*,
+::before,
+::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -84,9 +86,7 @@
           .leaflet-routing-alt td {
             font-size: 1em;
           }
-          .leaflet-routing-icon {
 
-          }
 // - Nav Markers - //
   // .sparkUserMarker {
   //   background-image: url('./assets/ico/map/spark_routing_user-loc.svg') !important;

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Parking } from 'src/app/shared/models/parking';
 
 @Component({
   selector: 'app-favoriteMessage',
@@ -9,6 +10,9 @@ export class FavoriteMessageComponent implements OnInit {
 
   message : string = "exemple message favorite"
   iconPath: any = "/assets/popup-message/star.svg"
+
+  @Input() parking! : Parking;
+
 
   constructor() { }
 

@@ -4,6 +4,17 @@ import * as L from 'leaflet';
 import { latLng, Map, tileLayer } from 'leaflet';
 import { NavGps } from '../models/nav-gps';
 import 'leaflet-routing-machine';
+import { ParkingDisplayService } from './parking-display.service';
+import { ParkingService } from './parking.service';
+import { interval, Subscription } from 'rxjs';
+import { Parking } from '../models/parking';
+import { ItineraryService } from './itinerary.service';
+
+/**
+ * constante representant un interval de 1 minute exprimé en ms
+ */
+ const UPDATE_PARKING_INTERVAL = 5000;
+ const SEARCH_RADIUS = 5;
 
 /**
  * Map service for all map actions
@@ -20,7 +31,11 @@ export class MapService {
   public options!: L.MapOptions;
   private routingMachineIsRunning = false;
   public routeControl?: L.Routing.Control;
+  public needNav= false;
 
+  /**
+   * Set icon for User localisation
+   */
   public myUserIcon = L.icon({
     iconUrl: './assets/ico/map/spark_routing_user-loc.svg',
     iconSize: [38, 95],
@@ -31,10 +46,20 @@ export class MapService {
     // shadowAnchor: [22, 94]
 });
 
+  sub: Subscription | null = null;
+  parkings: Parking[] = [];
+  /**
+   * parking selectionné lorsque l'on clique sur la carte
+   */
+  selectedParking: Parking | undefined;
+  /**
+  * observable notifiant ses abbonnés à intervalle régulier
+  */
+  obs$ = interval(UPDATE_PARKING_INTERVAL);
+
   receiveMap(map: Map) {
     this.map = map;
   }
-
   receiveZoom(zoom: number) {
     this.zoom = zoom;
   }
@@ -45,7 +70,7 @@ export class MapService {
    * Set general option for 'leaflet' map
    * @returns 'leaflet' L.MapOption
    */
-  setMapOptions(): L.MapOptions {
+   setMapOptions(): L.MapOptions {
     this.options = {
       layers:[tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png', {
         opacity: 0.7,
@@ -59,9 +84,8 @@ export class MapService {
     return this.options;
   }
 
-
-  constructor(
-  ) { }
+  constructor(private parkingDisplayService: ParkingDisplayService, private parkingService: ParkingService) { console.log(this.navGPS);
+   }
 
   /**
    * Initiate Routing (itinerary) service/module
@@ -71,39 +95,80 @@ export class MapService {
    */
   setRouting(navGPS: NavGps) {
     this.routingModule(navGPS.localLat, navGPS.localLon, navGPS.distLat, navGPS.distLon);
-    // setInterval(() => this.syncGPSUserLoc(this.syncNavGPS), 500)
+    setInterval(() => this.syncGPSUserLoc(this.syncNavGPS), 500)
+    this.parkingService.setNavGPS(this.syncNavGPS);
   }
-
   /**
    * Sync user location on nav itinerary (leaflet-routing-machine)
    * @param navGPS NavGps - actualised GPS info of user
    */
-   syncGPSUserLoc(navGPS: NavGps) {
+  syncGPSUserLoc(navGPS: NavGps) {
     var newLatLngA = new L.LatLng(navGPS.localLat, navGPS.localLon);
     var newLatLngB = new L.LatLng(navGPS.distLat, navGPS.distLon);
     this.routeControl!.setWaypoints([newLatLngA, newLatLngB]);
   }
-
   /**
    * 'Leaflet' method that runs when the map is ready
    * @param map L.Map
    */
   MapReady(map: L.Map, navNeed?: boolean, navGPS?: NavGps) {
+    this.parkingDisplayService.map = map;
+    this.sub = this.parkingService.parkingsAround$.subscribe((parkings) => {
+      this.parkings = parkings;
+      this.initParkingWiew();
+    });
+    this.updateParkingList();
+    this.parkingDisplayService.selectedParking$.subscribe((parking) => {
+      this.selectedParking = parking;
+    });
     this.map = map;
     this.map$.emit(map);
     map.setView([43.61424, 3.87117], 16); // Set variables for init map
     this.zoom = map.getZoom();
     this.zoom$.emit(this.zoom);
-
-    // // test routing
-    this.setRouting(this.navGPS);                            // -- Comment this line to Kill Itinerary module
+    // test routing
+    if (this.needNav) {
+      console.log('test-routing');
+      console.log('needNavc is :' + this.needNav);
+      this.setRouting(this.navGPS);// -- Comment this line to Kill Itinerary module
+    }
 
     // test routing update
-      // // If Routing machine isRunning
-      // if (this.routingMachineIsRunning) {
-      //   this.syncGPSUserLoc(this.syncNavGPS);
-      // }
+    // If Routing machine isRunning
+    if (this.routingMachineIsRunning) {
+      this.syncGPSUserLoc(this.syncNavGPS);
+    }
     // End of test routing update --◊
+  }
+
+
+  /**
+   * affiche  tous les parkings sur la carte
+   */
+  initParkingWiew() {
+    console.log("init Parking view");
+    console.log(this.parkings);
+    this.parkingDisplayService.removeParkingsFromMap();
+    this.parkings.forEach(parking => {
+      this.parkingDisplayService.addParkingOnMap(parking);
+    });
+    // this.map$.emit(this.map);
+  }
+
+  /**
+   * fonction mettant à jour la liste des parkings a intervalle régulier
+   */
+  updateParkingList() {
+    this.obs$.subscribe((v) => {
+      console.log("update Parking");
+      console.log("nav GPS:" + this.syncNavGPS);
+      console.log(v);
+      if (this.syncNavGPS) {
+        this.parkingService.getParkingListAround(this.syncNavGPS.localLat, this.syncNavGPS.localLon, SEARCH_RADIUS);
+      }
+
+    }
+    );
   }
 
   /**
