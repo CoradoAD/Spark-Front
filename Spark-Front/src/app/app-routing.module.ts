@@ -3,6 +3,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { BoderAdminComponent } from './components/boder-admin/boder-admin.component';
 import { BoderUserComponent } from './components/boder-user/boder-user.component';
 import { ProfilComponent } from './components/profil/profil.component';
+import { AuthGuard } from './shared/guard/auth.guard';
 
 
 const routes: Routes = [
@@ -13,7 +14,7 @@ const routes: Routes = [
   { path: 'admin', component: BoderAdminComponent },
   { path: 'login', loadChildren: () => import('./modules/login/login.module').then(m => m.LoginModule) },
   { path: 'register', loadChildren: () => import('./modules/register/register.module').then(m => m.RegisterModule) },
-  { path: 'home', loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule) },
+  { path: 'home', canActivate: [AuthGuard], loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule) },
   // { path: '', redirectTo: 'home', pathMatch: 'full' }
 
   // { path: '**', component: PageNotFoundComponent },  // Wildcard route for a 404 page

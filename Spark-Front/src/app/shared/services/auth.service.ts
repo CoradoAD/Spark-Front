@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, ReplaySubject } from 'rxjs';
 const AUTH_API = 'http://localhost:8080/api/auth/';
 
 const httpOptions = {
@@ -13,6 +13,7 @@ const httpOptions = {
 export class AuthService {
 
   constructor(private http: HttpClient) { }
+  public isLoggedIns$ = new ReplaySubject<boolean>(1);
 
   login(username: string, userPwd: string): Observable<any> {
     return this.http.post(AUTH_API + 'signin', {
