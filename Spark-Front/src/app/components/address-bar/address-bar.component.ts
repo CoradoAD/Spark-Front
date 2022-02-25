@@ -1,9 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-// import
 import { OpenStreetMapProvider } from 'leaflet-geosearch';
 import { MapService } from 'src/app/shared/services/map.service';
-import { GeoSearchControl } from 'leaflet-geosearch';
-import * as L from 'leaflet';
+
 
 
 @Component({
