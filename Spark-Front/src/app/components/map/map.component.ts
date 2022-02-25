@@ -8,8 +8,8 @@ import 'leaflet-routing-machine';
 
 import { ParkingDisplayService } from 'src/app/shared/services/parking-display.service';
 import { ParkingService } from 'src/app/shared/services/parking.service';
-
 import { MapService } from 'src/app/shared/services/map.service';
+
 
 @Component({
   selector: 'app-map',
@@ -40,6 +40,9 @@ export class MapComponent implements OnInit, OnDestroy {
   onMapReady(map: L.Map) {
     this.mapService.MapReady(map);
   }
+
+  
+
 
   ngOnDestroy() {
     this.mapService.map.clearAllEventListeners();

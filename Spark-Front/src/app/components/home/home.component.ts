@@ -7,7 +7,11 @@ import { UserService } from 'src/app/shared/services/user.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+
   content?: string;
+
+  map!: L.Map;
+
 
   constructor(private userService: UserService) { }
 
@@ -22,4 +26,7 @@ export class HomeComponent implements OnInit {
     );
   }
 
+  getMap(value: L.Map) {
+    this.map = value;
+  }
 }

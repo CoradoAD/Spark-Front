@@ -1,4 +1,4 @@
-<form class="addressBarForm">
+<form class="addressBarForm" (ngSubmit)="submit()">
 
   <label for="address" class="label">Entrez votre destination</label>
 
@@ -6,8 +6,8 @@
 
     <img class="icon star" src="assets/popup-message/star.svg" />
 
-    <input class="fieldAddress" id="search" type="text" name="address"
-      placeholder="Entrez votre destination" #address  autocomplete="off">
+    <input class="fieldAddress"  name="searchAddress" type="text"
+    [(ngModel)]="searchAddress" autocomplete="off" #adress>
 
     <button class="btn-search" type="submit">
       <img class="icon search" src="assets/addressBar/search.svg" />

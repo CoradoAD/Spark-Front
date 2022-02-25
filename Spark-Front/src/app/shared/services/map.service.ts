@@ -12,11 +12,10 @@ import { Parking } from '../models/parking';
 /**
  * constante representant un interval de 1 minute exprimé en ms
  */
- const UPDATE_PARKING_INTERVAL=5000;
- const SEARCH_RADIUS=5;
-
+const UPDATE_PARKING_INTERVAL = 5000;
+const SEARCH_RADIUS = 5;
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MapService {
   public navGPS!: NavGps;
@@ -26,25 +25,25 @@ export class MapService {
   public options!: L.MapOptions;
   private routingMachineIsRunning = false;
   public routeControl?: L.Routing.Control;
-  sub:Subscription |null=null;
-  parkings: Parking[] =[];
+  sub: Subscription | null = null;
+  parkings: Parking[] = [];
   /**
    * parking selectionné lorsque l'on clique sur la carte
    */
-  selectedParking:Parking|undefined;
-   /**
+  selectedParking: Parking | undefined;
+  /**
    * observable notifiant ses abbonnés à intervalle régulier
    */
-    obs$ = interval(UPDATE_PARKING_INTERVAL);
+  obs$ = interval(UPDATE_PARKING_INTERVAL);
   receiveMap(map: Map) {
-    console.log(this.selectedParking);
+    this.map = map;
   }
 
   receiveZoom(zoom: number) {
     this.zoom = zoom;
   }
-  @Output() map$: EventEmitter<L.Map> = new EventEmitter;
-  @Output() zoom$: EventEmitter<number> = new EventEmitter;
+  @Output() map$: EventEmitter<L.Map> = new EventEmitter();
+  @Output() zoom$: EventEmitter<number> = new EventEmitter();
 
   /**
    * Set general option for 'leaflet' map
@@ -52,22 +51,29 @@ export class MapService {
    */
   setMapOptions(): L.MapOptions {
     this.options = {
+      layers: [
+        tileLayer(
+          'https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png',
+          {
+            opacity: 0.7,
+            maxZoom: 21,
 
-      layers:[tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png', {
-        opacity: 0.7,
-        maxZoom: 21,
-
-        detectRetina: true,
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-
-      })],
-      zoom:1,
-      center:latLng(43.61424,3.87117, 14),
+            detectRetina: true,
+            attribution:
+              '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+          }
+        ),
+      ],
+      zoom: 1,
+      center: latLng(43.61424, 3.87117, 14),
     };
     return this.options;
   }
 
-  constructor(private parkingDisplayService: ParkingDisplayService, private parkingService:ParkingService) { }
+  constructor(
+    private parkingDisplayService: ParkingDisplayService,
+    private parkingService: ParkingService
+  ) {}
 
   /**
    * Initiate Routing (itinerary) service/module
@@ -76,15 +82,20 @@ export class MapService {
    * @param navGPS NavGps - set local LatLon & dist LatLon
    */
   setRouting(navGPS: NavGps) {
-    this.routingModule(navGPS.localLat, navGPS.localLon, navGPS.distLat, navGPS.distLon);
-    setInterval(() => this.syncGPSUserLoc(this.syncNavGPS), 500)
+    this.routingModule(
+      navGPS.localLat,
+      navGPS.localLon,
+      navGPS.distLat,
+      navGPS.distLon
+    );
+    setInterval(() => this.syncGPSUserLoc(this.syncNavGPS), 500);
     this.parkingService.setNavGPS(this.syncNavGPS);
   }
   /**
    * Sync user location on nav itinerary (leaflet-routing-machine)
    * @param navGPS NavGps - actualised GPS info of user
    */
-   syncGPSUserLoc(navGPS: NavGps) {
+  syncGPSUserLoc(navGPS: NavGps) {
     var newLatLngA = new L.LatLng(navGPS.localLat, navGPS.localLon);
     var newLatLngB = new L.LatLng(navGPS.distLat, navGPS.distLon);
     this.routeControl!.setWaypoints([newLatLngA, newLatLngB]);
@@ -94,16 +105,14 @@ export class MapService {
    * @param map L.Map
    */
   MapReady(map: L.Map, navNeed?: boolean, navGPS?: NavGps) {
-    this.parkingDisplayService.map=map;
+    this.parkingDisplayService.map = map;
     this.sub = this.parkingService.parkingsAround$.subscribe((parkings) => {
-     this.parkings = parkings;
-     this.initParkingWiew();
+      this.parkings = parkings;
+      this.initParkingWiew();
     });
     this.updateParkingList();
     this.parkingDisplayService.selectedParking$.subscribe((parking) => {
-      this.selectedParking=parking;
-      console.log(this.selectedParking);
-
+      this.selectedParking = parking;
     });
     this.map = map;
     this.map$.emit(map);
@@ -112,24 +121,23 @@ export class MapService {
     this.zoom$.emit(this.zoom);
     // // test routing
     this.setRouting(this.navGPS);
-                               // -- Comment this line to Kill Itinerary module
+    // -- Comment this line to Kill Itinerary module
     // test routing update
-      // If Routing machine isRunning
-      if (this.routingMachineIsRunning) {
-        this.syncGPSUserLoc(this.syncNavGPS);
-      }
+    // // If Routing machine isRunning
+    // if (this.routingMachineIsRunning) {
+    //   this.syncGPSUserLoc(this.syncNavGPS);
+    // }
     // End of test routing update --◊
   }
-
 
   /**
    * affiche  tous les parkings sur la carte
    */
-   initParkingWiew(){
-    console.log("init Parking view");
+  initParkingWiew() {
+    console.log('init Parking view');
     console.log(this.parkings);
     this.parkingDisplayService.removeParkingsFromMap();
-    this.parkings.forEach(parking => {
+    this.parkings.forEach((parking) => {
       this.parkingDisplayService.addParkingOnMap(parking);
     });
     // this.map$.emit(this.map);
@@ -138,17 +146,19 @@ export class MapService {
   /**
    * fonction mettant à jour la liste des parkings a intervalle régulier
    */
-   updateParkingList(){
-    this.obs$.subscribe((v) =>{
-      console.log("update Parking");
-      console.log("nav GPS:"+ this.syncNavGPS);
+  updateParkingList() {
+    this.obs$.subscribe((v) => {
+      console.log('update Parking');
+      console.log('nav GPS:' + this.syncNavGPS);
       console.log(v);
-      if(this.syncNavGPS){
-        this.parkingService.getParkingListAround(this.syncNavGPS.localLat,this.syncNavGPS.localLon,SEARCH_RADIUS);
+      if (this.syncNavGPS) {
+        this.parkingService.getParkingListAround(
+          this.syncNavGPS.localLat,
+          this.syncNavGPS.localLon,
+          SEARCH_RADIUS
+        );
       }
-
-    }
-    );
+    });
   }
 
   /**
@@ -161,33 +171,35 @@ export class MapService {
   }
 
   /**
-  * 'leaflet routing machine' nav
-  * to see more options and stages please consult documentation:
-  * - http://www.liedman.net/leaflet-routing-machine/#getting-started (official site)
-  * - http://www.liedman.net/leaflet-routing-machine/tutorials/ (tutorials - official)
-  * - http://www.liedman.net/leaflet-routing-machine/api/ (API-Doc)
-  * - https://github.com/perliedman/leaflet-routing-machine#readme (gitHub)
-  * @param localLat (start lat) - user gps located latitude
-  * @param localLon (start lon) - user gps located longitude
-  * @param distLat (end lat) - distant itinary latitude location
-  * @param distLon (end lon) - distant itinary longitude location
-  */
-  routingModule(localLat: number, localLon: number, distLat: number, distLon: number): void {   // arguments 'lat' & 'lon' => possibilité de 'latLong' [lat, lon]
+   * 'leaflet routing machine' nav
+   * to see more options and stages please consult documentation:
+   * - http://www.liedman.net/leaflet-routing-machine/#getting-started (official site)
+   * - http://www.liedman.net/leaflet-routing-machine/tutorials/ (tutorials - official)
+   * - http://www.liedman.net/leaflet-routing-machine/api/ (API-Doc)
+   * - https://github.com/perliedman/leaflet-routing-machine#readme (gitHub)
+   * @param localLat (start lat) - user gps located latitude
+   * @param localLon (start lon) - user gps located longitude
+   * @param distLat (end lat) - distant itinary latitude location
+   * @param distLon (end lon) - distant itinary longitude location
+   */
+  routingModule(
+    localLat: number,
+    localLon: number,
+    distLat: number,
+    distLon: number
+  ): void {
+    // arguments 'lat' & 'lon' => possibilité de 'latLong' [lat, lon]
     console.log('routingmodule');
     if (!this.routingMachineIsRunning) {
       this.routingMachineIsRunning = true;
     }
     this.routeControl = L.Routing.control({
-        waypoints: [
-          L.latLng(localLat, localLon),
-          L.latLng(distLat, distLon)
-        ],
-        show: true,
-        addWaypoints: false,
-        showAlternatives: false,
-        containerClassName: 'contClass',
-        alternativeClassName: 'altNav',
-      }).addTo(this.map);
+      waypoints: [L.latLng(localLat, localLon), L.latLng(distLat, distLon)],
+      show: true,
+      addWaypoints: false,
+      showAlternatives: false,
+      containerClassName: 'contClass',
+      alternativeClassName: 'altNav',
+    }).addTo(this.map);
   }
-
 }
