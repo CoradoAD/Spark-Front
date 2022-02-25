@@ -6,14 +6,15 @@ import { NavGps } from '../models/nav-gps';
 import 'leaflet-routing-machine';
 import { ParkingDisplayService } from './parking-display.service';
 import { ParkingService } from './parking.service';
-import { interval, Subscription } from 'rxjs';
+import { BehaviorSubject, interval, Subscription } from 'rxjs';
 import { Parking } from '../models/parking';
+import { NgLocalization } from '@angular/common';
 
 /**
  * constante representant un interval de 1 minute exprimé en ms
  */
  const UPDATE_PARKING_INTERVAL=5000;
- const SEARCH_RADIUS=5;
+ const SEARCH_RADIUS=50;
 @Injectable({
   providedIn: 'root'
 })
@@ -31,6 +32,7 @@ export class MapService {
    * parking selectionné lorsque l'on clique sur la carte
    */
   selectedParking:Parking|undefined;
+ 
    /**
    * observable notifiant ses abbonnés à intervalle régulier
    */
@@ -97,7 +99,9 @@ export class MapService {
     });
     this.updateParkingList();
     this.parkingDisplayService.selectedParking$.subscribe((parking) => {  
-      this.selectedParking=parking;        
+      this.selectedParking=parking; 
+      // if(parking?.Ylat)this.navGPS.distLat=parking.Ylat;   
+      // if(parking?.Xlong)this.navGPS.distLon=parking.Xlong;     
     });
     this.map = map;
     this.map$.emit(map);
@@ -106,6 +110,7 @@ export class MapService {
     this.zoom$.emit(this.zoom);
     // // test routing
     this.setRouting(this.navGPS); 
+    
                                // -- Comment this line to Kill Itinerary module
     // test routing update
       // // If Routing machine isRunning
@@ -114,8 +119,20 @@ export class MapService {
       // }
     // End of test routing update --◊
   }
+  /**
+   * methode appelée afin de lancer la navigation vers un parking
+   */
+  startNavigation(parking:Parking){
+    console.log("start navigation");
+    this.navGPS.distLat=parking.Ylat;   
+    this.navGPS.distLon=parking.Xlong; 
+   
+  }
+  stopNavigation(){
+   
+    // this.setRouting(this.navGPS); 
+  }
   
-
   /**
    * affiche  tous les parkings sur la carte
    */
@@ -167,7 +184,7 @@ export class MapService {
   * @param distLon (end lon) - distant itinary longitude location
   */
   routingModule(localLat: number, localLon: number, distLat: number, distLon: number): void {   // arguments 'lat' & 'lon' => possibilité de 'latLong' [lat, lon]
-    console.log('routingmodule');
+    console.log('ROUTINGMODULE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
     if (!this.routingMachineIsRunning) {
       this.routingMachineIsRunning = true;
     }

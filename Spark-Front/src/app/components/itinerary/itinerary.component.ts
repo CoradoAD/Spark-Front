@@ -12,16 +12,36 @@ export class ItineraryComponent implements OnInit {
 
   constructor( private mapServ: MapService ) {
     // Test routing (test values) 43.58895, 3.93254 RP1 Latte // 43.59117, 3.93619 // 43.6101, 3.8918 Jean Mermoz // 43.56217, 4.07966  LGM
+    console.log("itinerary");
+    var lat=43.58895;
+    var lon=3.93254;
     this.navGPS = {
-      localLat: 43.59117,
-      localLon: 3.93619,
+      localLat: lat,
+      localLon: lon,
       distLat: 43.61424,
       distLon: 3.87117,
     };
-    // this.setRouting(this.navGPS);
     this.syncGPSUserLoc(this.navGPS);
+    if(navigator.geolocation){
+     
+      navigator.geolocation.getCurrentPosition((position)=>{
+        console.log("NAVIGATEUR EST DISPO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        console.log(position.coords.latitude)
+        console.log(position.coords.longitude)
+        console.log("END COORDONN2ES!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+         this.navGPS.localLat = position.coords.latitude;
+         this.navGPS.localLon = position.coords.longitude;
+       });
+     }
+      else{
+        alert("pas de geoloc!");
+      }
+  
+    this.setRouting(this.navGPS);
+   
     // End test lat/long --◊
   }
+  
 
   /**
    * Set routing module
@@ -37,8 +57,8 @@ export class ItineraryComponent implements OnInit {
    */
   syncGPSUserLoc(navGPS: NavGps){
     // simulated updated user localisation
-    navGPS.localLat = 43.58895;
-    navGPS.localLon = 3.93254;
+    // navGPS.localLat = 43.58895;
+    // navGPS.localLon = 3.93254;
     // End initalisation of update --◊
     this.mapServ.syncNavGPS = navGPS;
   }
