@@ -1,13 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { MapComponent } from 'src/app/components/map/map.component';
+import { MapComponent } from 'src/app/modules/map/map.component';
 
-// const routes: Routes = [
-//   {
-//     path: '',
-//     loadChildren: () => import('../map/map.module').then(m => m.MapModule)
-//   }
-// ];
 
 const routes: Routes = [
   {

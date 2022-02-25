@@ -1,20 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ItineraryComponent } from 'src/app/components/itinerary/itinerary.component';
-import { MapComponent } from 'src/app/components/map/map.component';
 import { HomeComponent } from './home.component';
 
-// const routes: Routes = [
-//   {
-//     path: '',
-//     loadChildren: () => import('../map/map.module').then(m => m.MapModule)
-//   }
-// ];
-
+/**
+ * Set Main App routes and link to MapModule and sub-routes
+ */
 const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
+    // Child routes of Home Component (under home module/component)
     children: [
       {
         path: 'map',

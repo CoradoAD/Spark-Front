@@ -27,7 +27,6 @@ export class MapComponent implements OnInit, OnDestroy {
   receiveMap(map: Map) {
     this.map = map;
   }
-
   receiveZoom(zoom: number) {
     this.zoom = zoom;
   }
