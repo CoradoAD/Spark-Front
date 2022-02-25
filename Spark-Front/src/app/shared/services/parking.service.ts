@@ -14,7 +14,7 @@ import { NavGps } from '../models/nav-gps';
  */
 export class ParkingService implements OnDestroy{
 
-    
+
   constructor(private http: HttpClient){
   }
   ngOnDestroy(): void {
@@ -36,13 +36,13 @@ export class ParkingService implements OnDestroy{
    * récupère la liste des parkings
    */
   getParkingList(){
-    this.http.get<Parking[]>(this.sparkApiUrl).subscribe((parkings) => {    
+    this.http.get<Parking[]>(this.sparkApiUrl).subscribe((parkings) => {
       this.allParkings$.next(parkings);
-      
+
     });
   }
  /**
-  * Récupère la liste des parkings à une distance données autour d'un point origine donné , 
+  * Récupère la liste des parkings à une distance données autour d'un point origine donné ,
   * @param xLong  longitude du point origine
   * @param xLat  latitude du point origine
   * @param distance rayon de recherche du point origine

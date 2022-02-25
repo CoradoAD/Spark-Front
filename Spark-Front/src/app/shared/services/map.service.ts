@@ -51,14 +51,17 @@ export class MapService {
    */
   setMapOptions(): L.MapOptions {
     this.options = {
+
       layers:[tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png', {
         opacity: 0.7,
         maxZoom: 21,
+
         detectRetina: true,
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+
       })],
       zoom:1,
-      center:latLng(43.61424,3.87117, 14)
+      center:latLng(43.61424,3.87117, 14),
     };
     return this.options;
   }
@@ -91,13 +94,13 @@ export class MapService {
    */
   MapReady(map: L.Map, navNeed?: boolean, navGPS?: NavGps) {
     this.parkingDisplayService.map=map;
-    this.sub = this.parkingService.parkingsAround$.subscribe((parkings) => {  
+    this.sub = this.parkingService.parkingsAround$.subscribe((parkings) => {
      this.parkings = parkings;
-     this.initParkingWiew();      
+     this.initParkingWiew();
     });
     this.updateParkingList();
-    this.parkingDisplayService.selectedParking$.subscribe((parking) => {  
-      this.selectedParking=parking;        
+    this.parkingDisplayService.selectedParking$.subscribe((parking) => {
+      this.selectedParking=parking;
     });
     this.map = map;
     this.map$.emit(map);
@@ -105,7 +108,7 @@ export class MapService {
     this.zoom = map.getZoom();
     this.zoom$.emit(this.zoom);
     // // test routing
-    this.setRouting(this.navGPS); 
+    this.setRouting(this.navGPS);
                                // -- Comment this line to Kill Itinerary module
     // test routing update
       // // If Routing machine isRunning
@@ -114,16 +117,16 @@ export class MapService {
       // }
     // End of test routing update --◊
   }
-  
+
 
   /**
    * affiche  tous les parkings sur la carte
    */
    initParkingWiew(){
-    console.log("init Parking view");   
-    console.log(this.parkings);  
-    this.parkingDisplayService.removeParkingsFromMap(); 
-    this.parkings.forEach(parking => {       
+    console.log("init Parking view");
+    console.log(this.parkings);
+    this.parkingDisplayService.removeParkingsFromMap();
+    this.parkings.forEach(parking => {
       this.parkingDisplayService.addParkingOnMap(parking);
     });
     // this.map$.emit(this.map);
@@ -140,7 +143,7 @@ export class MapService {
       if(this.syncNavGPS){
         this.parkingService.getParkingListAround(this.syncNavGPS.localLat,this.syncNavGPS.localLon,SEARCH_RADIUS);
       }
-      
+
     }
     );
   }

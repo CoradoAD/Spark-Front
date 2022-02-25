@@ -26,6 +26,7 @@ import { ParkingsComponent } from './components/parkings/parkings.component';
 import { ParkingComponent } from './components/parkings/parking/parking.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
