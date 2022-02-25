@@ -32,6 +32,7 @@ export class MapService {
   private routingMachineIsRunning = false;
   public routeControl?: L.Routing.Control;
   public needNav= false;
+  public syncActualLoc!: NavGps;
 
   /**
    * Set icon for User localisation
@@ -106,6 +107,10 @@ export class MapService {
     var newLatLngA = new L.LatLng(navGPS.localLat, navGPS.localLon);
     var newLatLngB = new L.LatLng(navGPS.distLat, navGPS.distLon);
     this.routeControl!.setWaypoints([newLatLngA, newLatLngB]);
+    console.log('UserSync');
+    this.map.panTo(newLatLngA);
+
+
   }
   /**
    * 'Leaflet' method that runs when the map is ready
