@@ -17,7 +17,7 @@ export class BottomPopupComponent implements OnInit {
 
   ngOnInit(): void {
 
-    setTimeout(() => this.getParking(), 5000);
+    setTimeout(() => this.getParking(), 20000);
   }
 
   getParking() {

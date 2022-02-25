@@ -12,7 +12,6 @@ import { MessageComponent } from './components/bottom-popup-interactive/message/
 import { BottomPopupComponent } from './components/bottom-popup/bottom-popup.component';
 import { FavoriteMessageComponent } from './components/bottom-popup/favoriteMessage/favoriteMessage.component';
 import { MessageStandardComponent } from './components/bottom-popup/messageStandard/messageStandard.component';
-import { AddressBarComponent } from './components/address-bar/address-bar.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './components/register/register.component';
@@ -22,8 +21,8 @@ import { BoderUserComponent } from './components/boder-user/boder-user.component
 import { BoderAdminComponent } from './components/boder-admin/boder-admin.component';
 import { ProfilComponent } from './components/profil/profil.component';
 import { ItineraryComponent } from './components/itinerary/itinerary.component';
-import { ParkingsComponent } from './components/parkings/parkings.component';
-import { ParkingComponent } from './components/parkings/parking/parking.component';
+import { AddressBarComponent } from './components/address-bar/address-bar.component';
+
 
 
 
@@ -39,7 +38,6 @@ import { ParkingComponent } from './components/parkings/parking/parking.componen
     BottomPopupComponent,
     FavoriteMessageComponent,
     MessageStandardComponent,
-    AddressBarComponent,
     RegisterComponent,
     HomeComponent,
     BoderUserComponent,
@@ -47,8 +45,8 @@ import { ParkingComponent } from './components/parkings/parking/parking.componen
     LoginComponent,
     ProfilComponent,
     ItineraryComponent,
-    ParkingsComponent,
-    ParkingComponent
+    AddressBarComponent,
+
   ],
   imports: [
     BrowserModule,

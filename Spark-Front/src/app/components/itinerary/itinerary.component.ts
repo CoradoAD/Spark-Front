@@ -8,6 +8,7 @@ import { MapService } from 'src/app/shared/services/map.service';
   styleUrls: ['./itinerary.component.scss']
 })
 export class ItineraryComponent implements OnInit {
+
   public navGPS!: NavGps;
 
   constructor( private mapServ: MapService ) {
@@ -44,6 +45,8 @@ export class ItineraryComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    // this.setRouting(this.navGPS);
   }
 
 }

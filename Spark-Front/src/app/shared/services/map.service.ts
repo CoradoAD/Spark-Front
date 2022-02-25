@@ -14,6 +14,7 @@ import { Parking } from '../models/parking';
  */
  const UPDATE_PARKING_INTERVAL=5000;
  const SEARCH_RADIUS=5;
+
 @Injectable({
   providedIn: 'root'
 })
@@ -36,7 +37,7 @@ export class MapService {
    */
     obs$ = interval(UPDATE_PARKING_INTERVAL);
   receiveMap(map: Map) {
-    this.map = map;
+    console.log(this.selectedParking);
   }
 
   receiveZoom(zoom: number) {
@@ -101,6 +102,8 @@ export class MapService {
     this.updateParkingList();
     this.parkingDisplayService.selectedParking$.subscribe((parking) => {
       this.selectedParking=parking;
+      console.log(this.selectedParking);
+
     });
     this.map = map;
     this.map$.emit(map);
@@ -111,10 +114,10 @@ export class MapService {
     this.setRouting(this.navGPS);
                                // -- Comment this line to Kill Itinerary module
     // test routing update
-      // // If Routing machine isRunning
-      // if (this.routingMachineIsRunning) {
-      //   this.syncGPSUserLoc(this.syncNavGPS);
-      // }
+      // If Routing machine isRunning
+      if (this.routingMachineIsRunning) {
+        this.syncGPSUserLoc(this.syncNavGPS);
+      }
     // End of test routing update --◊
   }
 

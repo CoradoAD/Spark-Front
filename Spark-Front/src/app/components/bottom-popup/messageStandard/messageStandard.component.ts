@@ -34,7 +34,6 @@ export class MessageStandardComponent implements OnInit, OnDestroy {
   parking!: Parking;
 
   public currentZone$ = new BehaviorSubject<Zone | null>(null);
-  public currentParking$ = new BehaviorSubject<ParkingClass | null>(null);
   public currentVehicle$ = new BehaviorSubject<Vehicle | null>(null);
 
   constructor(
@@ -48,7 +47,7 @@ export class MessageStandardComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     /**Test Dev */
-    setTimeout(() => this.test(), 7000);
+    setTimeout(() => this.test(), 30000);
   }
 
    /**Test Dev */
@@ -73,6 +72,8 @@ export class MessageStandardComponent implements OnInit, OnDestroy {
       let result = arrayResult.find((zone) => zone.nom == parking.typo_fonct)!;
       this.currentZone$.next(result);
       this.zone = this.currentZone$.value;
+      console.log(parking.nom);
+
 
     });
   }
