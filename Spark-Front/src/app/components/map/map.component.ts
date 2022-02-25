@@ -1,8 +1,7 @@
 // -- Gestion de l'affichage de la map (affichage de la carte 'OpenStreetMap' et de ses dépendances) -- //
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, Input, OnDestroy } from '@angular/core';
 // -> Imports 'leaflet'
 import * as L from "leaflet";
-import { latLng, tileLayer } from 'leaflet';
 // -> imports 'routing-machine' & 'Graphhopper'
 import 'leaflet-routing-machine';
 
@@ -23,13 +22,13 @@ export class MapComponent implements OnInit, OnDestroy {
   @Input() options!: L.MapOptions;
   public map!: L.Map;
   public zoom!: number;
-  constructor(private parkingDisplayService: ParkingDisplayService, private parkingService:ParkingService,public mapService: MapService ){
+  constructor(private parkingDisplayService: ParkingDisplayService, private parkingService: ParkingService, public mapService: MapService) {
 
-     this.setMapOptions();
+    this.setMapOptions();
   }
   setMapOptions() {
     this.options = this.mapService.setMapOptions();
-   }
+  }
   ngOnInit() {
 
   }

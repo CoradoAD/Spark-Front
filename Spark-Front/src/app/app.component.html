@@ -4,7 +4,7 @@
       <a href="#" class="navbar-brand">Spark</a>
       <ul class="navbar-nav mr-auto" routerLinkActive="active">
         <li class="nav-item">
-          <a href="/home" class="nav-link" routerLink="home">Home </a>
+          <a href="/home" class="nav-link">Home </a>
         </li>
         <li class="nav-item" *ngIf="showAdminBoard">
           <a href="/admin" class="nav-link" routerLink="admin">Admin Board</a>
@@ -15,10 +15,10 @@
       </ul>
       <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
         <li class="nav-item">
-          <a href="/register" class="nav-link" routerLink="register">Sign Up</a>
+          <a href="/register" class="nav-link">Sign Up</a>
         </li>
         <li class="nav-item">
-          <a href="/login" class="nav-link" routerLink="login">Connexion</a>
+          <a href="/login" class="nav-link">Connexion</a>
         </li>
       </ul>
       <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
@@ -36,6 +36,6 @@
   </div>
 </div>
 
-<footer>
+<!-- <footer>
   <app-navbar></app-navbar>
-</footer>
+</footer> -->
