@@ -18,7 +18,7 @@ export class ItineraryComponent implements OnInit {
   // --◊
 
   constructor(private itineraryServ: ItineraryService) {
-    this.testNavSimulation();
+    // this.testNavSimulation();
   }
 
   /**
