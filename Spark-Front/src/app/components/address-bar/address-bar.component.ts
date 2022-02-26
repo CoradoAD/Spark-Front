@@ -6,6 +6,7 @@ import { GeoSearchControl } from 'leaflet-geosearch';
 
 const provider = new OpenStreetMapProvider();
 
+
 @Component({
   selector: 'app-address-bar',
   templateUrl: './address-bar.component.html',
@@ -58,5 +59,4 @@ export class AddressBarComponent implements OnInit {
     this.show = false;
   }
 
-  
 }

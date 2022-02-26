@@ -8,9 +8,6 @@ import { BoderUserComponent } from 'src/app/components/boder-user/boder-user.com
 import { AddFavoritesComponent } from 'src/app/components/bottom-popup-interactive/add-favorites/add-favorites.component';
 import { BottomPopupInteractiveComponent } from 'src/app/components/bottom-popup-interactive/bottom-popup-interactive.component';
 import { MessageComponent } from 'src/app/components/bottom-popup-interactive/message/message.component';
-import { BottomPopupComponent } from 'src/app/components/bottom-popup/bottom-popup.component';
-import { FavoriteMessageComponent } from 'src/app/components/bottom-popup/favoriteMessage/favoriteMessage.component';
-import { MessageStandardComponent } from 'src/app/components/bottom-popup/messageStandard/messageStandard.component';
 import { NavbarComponent } from 'src/app/components/navbar/navbar.component';
 import { PopupErrorMessageComponent } from 'src/app/components/popup-error-message/popup-error-message.component';
 import { ProfilComponent } from 'src/app/components/profil/profil.component';
@@ -27,13 +24,11 @@ import { HomeComponent } from './home.component';
     HomeComponent,
     NavbarComponent,
     AddressBarComponent,
-    BottomPopupComponent,
     BottomPopupInteractiveComponent,
     PopupErrorMessageComponent,
     AddFavoritesComponent,
     MessageComponent,
-    FavoriteMessageComponent,
-    MessageStandardComponent,
+
     BoderUserComponent,
     BoderAdminComponent,
     ProfilComponent,

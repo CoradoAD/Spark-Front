@@ -6,6 +6,9 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { MapRoutingModule } from './map-routing.module';
 import { ParkingComponent } from 'src/app/components/parkings/parking/parking.component';
 import { ParkingsComponent } from 'src/app/components/parkings/parkings.component';
+import { BottomPopupComponent } from 'src/app/components/bottom-popup/bottom-popup.component';
+import { MessageStandardComponent } from 'src/app/components/bottom-popup/messageStandard/messageStandard.component';
+import { FavoriteMessageComponent } from 'src/app/components/bottom-popup/favoriteMessage/favoriteMessage.component';
 
 
 /**
@@ -16,7 +19,10 @@ import { ParkingsComponent } from 'src/app/components/parkings/parkings.componen
     MapComponent,
     ItineraryComponent,
     ParkingsComponent,
-    ParkingComponent
+    ParkingComponent,
+    BottomPopupComponent,
+    MessageStandardComponent,
+    FavoriteMessageComponent
   ],
   imports: [
     CommonModule,
