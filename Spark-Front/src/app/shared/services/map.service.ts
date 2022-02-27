@@ -75,7 +75,7 @@ export class MapService {
    */
   setRouting(navGPS: NavGps) {
     this.routingModule(navGPS.localLat, navGPS.localLon, navGPS.distLat, navGPS.distLon);
-    setInterval(() => this.syncGPSUserLoc(this.syncNavGPS), 500)
+    setInterval(() => this.syncGPSUserLoc(this.syncNavGPS), 5000)
     this.parkingService.setNavGPS(this.syncNavGPS);
   }
   /**
@@ -100,36 +100,58 @@ export class MapService {
     this.updateParkingList();
     this.parkingDisplayService.selectedParking$.subscribe((parking) => {  
       this.selectedParking=parking; 
-      // if(parking?.Ylat)this.navGPS.distLat=parking.Ylat;   
-      // if(parking?.Xlong)this.navGPS.distLon=parking.Xlong;     
     });
     this.map = map;
     this.map$.emit(map);
-    map.setView([43.61424, 3.87117], 16); // Set variables for init map
+    map.setView([43.61424, 3.87117], 16).on("click",()=>{
+      
+          if(this.routingMachineIsRunning)      
+          {
+            
+            this.stopNavigation();
+          }
+        }); // Set variables for init map
     this.zoom = map.getZoom();
-    this.zoom$.emit(this.zoom);
-    // // test routing
-    this.setRouting(this.navGPS); 
+    //suppression du prefix leaflet
+    map.attributionControl.setPrefix('');
+    //suppression de l'attribution en bas de page @OpenStreetMap
+    this.map.on('locationfound', (e)=>{
+      alert("location found")
+     console.log("locationFound");
+      var radius = 10;
+      var location = e.latlng;
+      L.marker(location).addTo(this.map)
+      L.circle(location, radius).addTo(map);
+      this.map.setView( e.latlng);
+    });
+    this.map.on('locationerror', (e)=>{
+      alert("location error")
     
-                               // -- Comment this line to Kill Itinerary module
-    // test routing update
-      // // If Routing machine isRunning
-      // if (this.routingMachineIsRunning) {
-      //   this.syncGPSUserLoc(this.syncNavGPS);
-      // }
-    // End of test routing update --◊
+    });
+    map.locate();
+    map.attributionControl.remove();
+    this.zoom$.emit(this.zoom);
+  
   }
+
+ 
   /**
    * methode appelée afin de lancer la navigation vers un parking
    */
   startNavigation(parking:Parking){
+    this.stopNavigation()
     console.log("start navigation");
     this.navGPS.distLat=parking.Ylat;   
     this.navGPS.distLon=parking.Xlong; 
+   if(!this.routingMachineIsRunning) this.setRouting(this.navGPS);
    
   }
   stopNavigation(){
-   
+    
+    if(this.routeControl&&this.routingMachineIsRunning){
+      this.map.removeControl(this.routeControl);
+      this.routingMachineIsRunning=false;
+    }
     // this.setRouting(this.navGPS); 
   }
   
