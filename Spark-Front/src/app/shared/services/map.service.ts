@@ -104,10 +104,8 @@ export class MapService {
     this.map = map;
     this.map$.emit(map);
     map.setView([43.61424, 3.87117], 16).on("click",()=>{
-      
           if(this.routingMachineIsRunning)      
           {
-            
             this.stopNavigation();
           }
         }); // Set variables for init map
@@ -116,7 +114,6 @@ export class MapService {
     map.attributionControl.setPrefix('');
     //suppression de l'attribution en bas de page @OpenStreetMap
     this.map.on('locationfound', (e)=>{
-      alert("location found")
      console.log("locationFound");
       var radius = 10;
       var location = e.latlng;
@@ -125,8 +122,7 @@ export class MapService {
       this.map.setView( e.latlng);
     });
     this.map.on('locationerror', (e)=>{
-      alert("location error")
-    
+      console.log("Géolocalisation non disponible");
     });
     map.locate();
     map.attributionControl.remove();
@@ -146,13 +142,15 @@ export class MapService {
    if(!this.routingMachineIsRunning) this.setRouting(this.navGPS);
    
   }
+  /**
+   * méthode permmetant d'arrêter la navigation
+   */
   stopNavigation(){
     
     if(this.routeControl&&this.routingMachineIsRunning){
       this.map.removeControl(this.routeControl);
       this.routingMachineIsRunning=false;
     }
-    // this.setRouting(this.navGPS); 
   }
   
   /**
@@ -160,12 +158,10 @@ export class MapService {
    */
    initParkingWiew(){
     console.log("init Parking view");   
-    console.log(this.parkings);  
     this.parkingDisplayService.removeParkingsFromMap(); 
     this.parkings.forEach(parking => {       
       this.parkingDisplayService.addParkingOnMap(parking);
     });
-    // this.map$.emit(this.map);
   }
 
   /**
@@ -174,7 +170,6 @@ export class MapService {
    updateParkingList(){
     this.obs$.subscribe((v) =>{
       console.log("update Parking");
-      console.log("nav GPS:"+ this.syncNavGPS);
       console.log(v);
       if(this.syncNavGPS){
         this.parkingService.getParkingListAround(this.syncNavGPS.localLat,this.syncNavGPS.localLon,SEARCH_RADIUS);
