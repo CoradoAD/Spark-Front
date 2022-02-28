@@ -8,7 +8,6 @@ import { ParkingDisplayService } from './parking-display.service';
 import { ParkingService } from './parking.service';
 import { interval, Subscription } from 'rxjs';
 import { Parking } from '../models/parking';
-import { ItineraryService } from './itinerary.service';
 
 /**
  * constante representant un interval de 1 minute exprimé en ms
@@ -35,17 +34,26 @@ export class MapService {
   public syncActualLoc!: NavGps;
 
   /**
-   * Set icon for User localisation
-   */
+  * Set custom Spark icons for Map Markers
+  */
   public myUserIcon = L.icon({
-    iconUrl: './assets/ico/map/spark_routing_user-loc.svg',
+    iconUrl: './assets/ico/map/spark_routing_user-marker.svg',
+    iconSize: [35, 35],
+    iconAnchor: [5, 18],
+    popupAnchor: [-3, -76],
+  });
+  public myGoalIcon = L.icon({
+    iconUrl: './assets/ico/map/spark_routing_goal-marker.svg',
+    iconSize: [35, 35],
+    iconAnchor: [5, 18],
+    popupAnchor: [-3, -76],
+  })
+  public myViaIcon = L.icon({
+    iconUrl: './assets.ico.map/spark_routing_via-marker.svg',
     iconSize: [38, 95],
     iconAnchor: [22, 94],
     popupAnchor: [-3, -76],
-    // shadowUrl: 'my-icon-shadow.png',
-    // shadowSize: [68, 95],
-    // shadowAnchor: [22, 94]
-});
+  }) // End of: custom Spark Markers --◊
 
   sub: Subscription | null = null;
   parkings: Parking[] = [];
@@ -67,7 +75,7 @@ export class MapService {
   @Output() map$: EventEmitter<L.Map> = new EventEmitter;
   @Output() zoom$: EventEmitter<number> = new EventEmitter;
 
-  /**
+   /**
    * Set general option for 'leaflet' map
    * @returns 'leaflet' L.MapOption
    */
@@ -83,7 +91,7 @@ export class MapService {
       center:latLng(43.61424,3.87117, 14),
     };
     return this.options;
-  }
+  } // End of: setMapOption --◊
 
   constructor(private parkingDisplayService: ParkingDisplayService, private parkingService: ParkingService) { console.log(this.navGPS);
    }
@@ -107,11 +115,9 @@ export class MapService {
     var newLatLngA = new L.LatLng(navGPS.localLat, navGPS.localLon);
     var newLatLngB = new L.LatLng(navGPS.distLat, navGPS.distLon);
     this.routeControl!.setWaypoints([newLatLngA, newLatLngB]);
-    console.log('UserSync');
     this.map.panTo(newLatLngA);
-
-
   }
+
   /**
    * 'Leaflet' method that runs when the map is ready
    * @param map L.Map
@@ -128,24 +134,15 @@ export class MapService {
     });
     this.map = map;
     this.map$.emit(map);
-    map.setView([43.61424, 3.87117], 16); // Set variables for init map
+    map.setView([43.61424, 3.87117], 16); // Set variables for init map - Update with variables of user loc ?
     this.zoom = map.getZoom();
     this.zoom$.emit(this.zoom);
-    // test routing
+    // routing-machine launcher
     if (this.needNav) {
-      console.log('test-routing');
       console.log('needNavc is :' + this.needNav);
-      this.setRouting(this.navGPS);// -- Comment this line to Kill Itinerary module
+      this.setRouting(this.navGPS);
     }
-
-    // test routing update
-    // If Routing machine isRunning
-    if (this.routingMachineIsRunning) {
-      this.syncGPSUserLoc(this.syncNavGPS);
-    }
-    // End of test routing update --◊
-  }
-
+  } // End of routing machine launcher --◊
 
   /**
    * affiche  tous les parkings sur la carte
@@ -198,17 +195,43 @@ export class MapService {
   * @param distLon (end lon) - distant itinary longitude location
   */
   routingModule(localLat: number, localLon: number, distLat: number, distLon: number): void {   // arguments 'lat' & 'lon' => possibilité de 'latLong' [lat, lon]
-    console.log('routingmodule');
-    let actualLoc = new L.LatLng(localLat, localLon)
+    // Custom Spark icons for Map Markers
+    const userMarker = this.myUserIcon;
+    const goalMarker = this.myGoalIcon;
+    const viaMarker = this.myViaIcon;
+    // Set/Update start (actual user) & goal (distant) localisations
+    let waypoints = [
+      L.latLng(localLat, localLon),
+      L.latLng(distLat, distLon),
+    ];
 
     if (!this.routingMachineIsRunning) {
       this.routingMachineIsRunning = true;
     }
+    // Leaflet-routing-machine conf & run
     this.routeControl = L.Routing.control({
         waypoints: [
           L.latLng(localLat, localLon),
           L.latLng(distLat, distLon),
         ],
+        plan: L.Routing.plan(waypoints, {
+          createMarker: function(i, wp, n) {
+            if (i == 0) {
+              return L.marker(wp.latLng, {
+                icon: userMarker
+              });
+            } else if (i == n -1) {
+              return L.marker(wp.latLng, {
+                icon: goalMarker
+              });
+            } else {
+              return L.marker(wp.latLng, {
+                icon: viaMarker
+              });
+            }
+          },
+          routeWhileDragging: true
+        }),
         lineOptions: {
           styles: [
             { color: 'green', opacity: 1, weight: 5 },
@@ -221,9 +244,26 @@ export class MapService {
         showAlternatives: false,
         containerClassName: 'contClass',
         alternativeClassName: 'altNav',
-      }).addTo(this.map);
-      // center map in user-loc
-      this.map.panTo(actualLoc);
+      }).addTo(this.map).on('routingerror', () => {
+        try {
+          this.map.getCenter();
+        } catch (e) {
+          this.map.fitBounds(L.latLngBounds(waypoints));
+        }
+      });
+
+      L.Routing.errorControl(this.routeControl, {
+        header: "Erreur de calcul d'itinéraire",
+        formatMessage(error) {
+            if (error.status < 0) {
+                return 'Le calcul du trajet à causé une erreur. Pour plus de détails :  <code><pre>' +
+                    error.message + '</pre></code';
+            } else {
+                return 'Le trajet ne peut pas être calculé. ' +
+                    error.message;
+            }
+        }
+    }).addTo(this.map);
   }
 
 }

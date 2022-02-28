@@ -29,7 +29,6 @@ export class ItineraryService {
    * @param navGPS NavGps local & distant GPS localisation
    */
   setRouting(navGPS: NavGps) {
-    console.log('navGPS of itineraryService :' + navGPS);
     this.mapServ.navGPS = navGPS;
     this.mapServ.needNav = true;
   }

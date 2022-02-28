@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+
+<!-- Created with Vectornator (http://vectornator.io/) -->
+<svg height="100%" stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 512 512" width="100%" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:vectornator="http://vectornator.io" xmlns:xlink="http://www.w3.org/1999/xlink">
+<metadata>
+<vectornator:setting key="IsTimeLapseWatermarkDisabled" value="false"/>
+<vectornator:setting key="UndoHistoryDisabled" value="true"/>
+<vectornator:setting key="VNDimensionsVisible" value="true"/>
+<vectornator:setting key="VNSnapToGuides" value="true"/>
+<vectornator:setting key="WDCMYKEnabledKey" value="false"/>
+<vectornator:setting key="WDDisplayWhiteBackground" value="false"/>
+<vectornator:setting key="WDDynamicGuides" value="false"/>
+<vectornator:setting key="WDGuidesVisible" value="true"/>
+<vectornator:setting key="WDIsolateActiveLayer" value="false"/>
+<vectornator:setting key="WDOutlineMode" value="false"/>
+<vectornator:setting key="WDRulersVisible" value="true"/>
+<vectornator:setting key="WDSnapToEdges" value="false"/>
+<vectornator:setting key="WDSnapToGrid" value="false"/>
+<vectornator:setting key="WDSnapToPoints" value="false"/>
+<vectornator:setting key="WDUnits" value="Pixels"/>
+</metadata>
+<defs/>
+<g id="spark_routing_via-marker" vectornator:layerName="spark_routing_via-marker">
+<path d="M310.772 374.294C311.732 375.254 312.692 375.734 314.132 375.734L314.612 375.734C316.052 375.734 317.492 374.774 317.972 373.334L342.932 325.814C343.892 323.894 343.412 321.494 341.972 320.054C340.532 318.614 338.132 318.134 336.212 319.094L288.692 344.054C287.252 344.534 286.292 345.974 286.292 347.414C286.292 348.854 286.772 350.294 287.732 351.734L310.772 374.294ZM250.292 344.054L202.772 318.614C200.852 317.654 198.452 318.134 197.012 319.574C195.572 321.014 195.092 323.414 196.052 325.334L221.012 372.854C221.492 374.294 222.932 375.254 224.372 375.254L224.852 375.254C226.292 375.254 227.252 374.774 228.212 373.814L250.772 351.254C251.732 350.294 252.212 348.854 252.212 346.934C252.212 345.014 251.732 344.534 250.292 344.054ZM229.172 410.774C228.212 409.814 226.772 409.334 224.852 409.334C223.412 409.334 221.972 410.294 221.492 411.734L196.052 459.734C195.092 461.654 195.572 464.054 197.012 465.494C197.972 466.454 198.932 466.934 200.372 466.934C201.332 466.934 201.812 466.934 202.772 466.454L250.292 441.494C251.732 441.014 252.692 439.574 252.692 438.134C252.692 436.694 252.212 435.254 251.252 433.814L229.172 410.774ZM343.412 459.254L318.452 412.214C317.972 410.774 316.532 409.814 315.092 409.814C313.652 409.814 312.212 410.294 310.772 411.254L288.212 433.814C287.252 434.774 286.772 436.214 286.772 438.134C286.772 439.574 287.732 441.014 289.172 441.494L336.692 466.454C337.172 466.934 338.132 466.934 339.092 466.934L339.092 466.934C341.972 466.934 343.892 465.014 343.892 462.134C344.372 460.694 343.892 459.734 343.412 459.254Z" fill="#ffffff" fill-rule="evenodd" opacity="1" stroke="none"/>
+<path d="M386.612 387.734L301.172 361.334L274.772 275.894C273.812 273.974 271.892 272.534 269.972 272.534C268.052 272.534 266.132 273.974 265.172 275.894L238.772 361.334L153.332 387.734C151.412 388.694 149.972 390.614 149.972 392.534C149.972 394.454 151.412 396.374 153.332 397.334L238.772 423.734L265.172 509.174C265.652 511.094 267.572 512.534 269.972 512.534C272.372 512.534 273.812 511.094 274.772 509.174L301.172 423.734L386.612 397.334C388.532 396.854 389.972 394.934 389.972 392.534C389.972 390.134 388.532 388.694 386.612 387.734ZM298.292 414.134L276.692 392.534L368.852 392.534L298.292 414.134ZM241.652 370.934L263.732 392.534L170.612 392.534L241.652 370.934ZM269.972 293.654L291.572 363.734L269.972 385.814L269.972 293.654ZM269.972 399.734L269.972 491.894L248.372 420.854L269.972 399.734Z" fill="#ffffff" fill-rule="evenodd" opacity="1" stroke="none"/>
+</g>
+</svg>
