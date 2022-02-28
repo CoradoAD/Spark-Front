@@ -34,8 +34,7 @@ export class ParkingDisplayService {
   addParkingOnMap(parking: Parking){
     var marker=L.marker([parking.Ylat, parking.Xlong], {icon: this.getParkingIcon()})
     .on('click', ()=>{
-      alert(parking.nom+" "+parking.freeCapacity);  // popup de test a supprimmer
-      this.selectedParking$.next(parking)})
+    this.selectedParking$.next(parking)})
     this.layer?.addLayer(marker).addTo(this.map);
 
   }

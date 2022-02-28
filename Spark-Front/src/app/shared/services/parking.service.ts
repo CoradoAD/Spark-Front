@@ -49,9 +49,12 @@ export class ParkingService implements OnDestroy{
   */
   getParkingListAround(xLat:number,xLong:number,distance:number){
     console.log("getParkingListAround");
+    console.log("xLat "+xLat);
     this.http.get<Parking[]>(this.sparkApiUrl+"/"+xLat+"/"+xLong+"/"+distance).subscribe((parkings) => {
       this.parkingsAround$.next(parkings);
     });
 
   }
+
+  
 }

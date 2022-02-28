@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-add-favorites',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-favorites.component.scss']
 })
 export class AddFavoritesComponent implements OnInit {
-
+  @Input()
   message : string = "Lorem itsum ilsim"
   iconPath: any = "/assets/popup-message/star.svg"
 
