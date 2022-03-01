@@ -13,14 +13,8 @@ export class AuthGuard implements CanActivate {
       .pipe(
         switchMap(isLogged => {
           console.log("isLogged = " + isLogged);
-          // Je n'arrive pas de mon côté à obtenir ('isLogged' à true)
-          // pour pouvoir construire le routage de l'app, j'ai remplacé:
-          // la condition du if (isLogged) par (true)
-          // le return du 'if' (mis en commentaire, qui ne marchait pas avec le canActivate: [AuthGuard]' de 'App-routing.module')
-          //      par 'return of(true);'
-          if (true) {
+          if (isLogged) {
             console.log("is Connected");
-            // return this.authservice.isLoggedIn$;
             return of(true);
           }
           this.router.navigateByUrl("login");

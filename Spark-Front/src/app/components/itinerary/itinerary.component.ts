@@ -21,9 +21,11 @@ export class ItineraryComponent {
   // --◊
 
   constructor(private itineraryServ: ItineraryService, private mapServ :MapService) {
-    if(this.simul){this.testNavSimulation();}
-    else{
-      console.log("itinerary");
+    if(this.simul)
+    {
+      this.testNavSimulation();
+    }
+    else{      
       var lat=43.58895;
       var lon=3.93254;
       this.navGPS = {
@@ -34,13 +36,8 @@ export class ItineraryComponent {
       };
       this.syncGPSUserLoc(this.navGPS);
       if(navigator.geolocation){
-      
         navigator.geolocation.getCurrentPosition((position)=>{
-        
-          console.log(position.coords.latitude)
-          console.log(position.coords.longitude)
-          
-          if( this.navGPS){
+            if( this.navGPS){
             this.navGPS.localLat = position.coords.latitude;
           this.navGPS.localLon = position.coords.longitude;
         }});
