@@ -1,16 +1,19 @@
-<p [style.text-decoration]= "boolean ? 'underline' : 'none' " class="text">Lorem ipsum</p>
+
+<div *ngIf="parking">
+
+<p [style.text-decoration]= "boolean ? 'underline' : 'none' " class="text">Nb de places</p>
 
 <div *ngIf="boolean; else elseBlock" class="container">
 
-  <button class="btn-check">{{messageBtnLeft }}
+  <button class="btn-check" (click)="onLaunchNavigation()">{{messageBtnLeft }}
     <div class="cercleIcon">
       <img [src]="pathIconLeft" alt="check">
     </div>
   </button>
 
-  <p class="nbPlaces"> {{ nbPlaces }}</p>
+  <p class="nbPlaces"> {{parking.freeCapacity }}</p>
 
-  <button class="btn-cross">
+  <button class="btn-cross" (click)="close()">
     <div class="cercleIcon">
     <img [src]="pathIconRight" alt="cross">
     </div>
@@ -23,10 +26,11 @@
 
   <div class="container">
     <button class="btn-check">{{messageBtnLeft }}
-      <div class="cercleIcon">
+      <div class="cercleIcon" >
         <img [src]="pathIconLeft" alt="check">
       </div>
     </button>
 
 </div>
 </ng-template>
+</div>

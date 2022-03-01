@@ -3,7 +3,7 @@
 export interface Parking {
     idParking:BigInteger ;
     nom:string;
-    freeCapacity:BigInteger;
+    freeCapacity:number;
     adresse:string;
     nb_places:BigInteger;
     Xlong:number;

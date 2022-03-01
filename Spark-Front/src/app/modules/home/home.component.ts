@@ -8,6 +8,7 @@ import { Map } from 'leaflet';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+
   content?: string;
 
 
@@ -16,14 +17,13 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.userService.getPublicContent().subscribe(
-    //   data => {
-    //     this.content = data;
-    //   },
-    //   err => {
-    //     this.content = JSON.parse(err.error).message;
-    //   }
-    // );
+    this.userService.getPublicContent().subscribe({
+      next: (data) => {
+        this.content = data;
+      },
+      error: (err) => {
+        this.content = JSON.parse(err.error).message;
+      }
+    });
   }
-
 }

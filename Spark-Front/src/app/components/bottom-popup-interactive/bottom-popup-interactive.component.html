@@ -1,7 +1,8 @@
-<div class="container-popup">
-  <app-add-favorites></app-add-favorites>
+<div *ngIf=(parking) class="container-popup">
+  <app-add-favorites message="Parking-{{parking.nom}}" (closepopup)="deselectParking()"></app-add-favorites>
   <div class="container-message">
-    <app-message></app-message>
+   
+    <app-message (launchNavigation)="launchNavigation()" (deselectParking)="deselectParking()"  [boolean]="true"></app-message>
   </div>
 
 </div>

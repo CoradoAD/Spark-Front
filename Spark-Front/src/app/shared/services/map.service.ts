@@ -1,26 +1,27 @@
 // -- Gestion des services liés à 'map-component' et à la map (OpenStreetMap, etc.) en 'local' -- //
 import { EventEmitter, Injectable, Output } from '@angular/core';
 import * as L from 'leaflet';
-import { latLng, Map, tileLayer } from 'leaflet';
-import { NavGps } from '../models/nav-gps';
+import { latLng, LayerGroup, Map, tileLayer } from 'leaflet';
 import 'leaflet-routing-machine';
+import { interval, Subscription } from 'rxjs';
+import { NavGps } from '../models/nav-gps';
+import { Parking } from '../models/parking';
 import { ParkingDisplayService } from './parking-display.service';
 import { ParkingService } from './parking.service';
-import { interval, Subscription } from 'rxjs';
-import { Parking } from '../models/parking';
+
 
 /**
  * constante representant un interval de 1 minute exprimé en ms
  */
  const UPDATE_PARKING_INTERVAL = 5000;
- const SEARCH_RADIUS = 5;
+ const SEARCH_RADIUS = 50;
 
 /**
  * Map service for all map actions
  * Set 'leaflet-map' and 'leaflet-routing-machine'
  */
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MapService {
   public navGPS!: NavGps;
@@ -34,8 +35,8 @@ export class MapService {
   public syncActualLoc!: NavGps;
 
   /**
-  * Set custom Spark icons for Map Markers
-  */
+   * Set custom Spark icons for Map Markers
+   */
   public myUserIcon = L.icon({
     iconUrl: './assets/ico/map/spark_routing_user-marker.svg',
     iconSize: [35, 35],
@@ -59,12 +60,19 @@ export class MapService {
   parkings: Parking[] = [];
   /**
    * parking selectionné lorsque l'on clique sur la carte
+
+  selectedParking:Parking|undefined;
+
+   /**
+   * observable notifiant ses abbonnés à intervalle régulier
+
    */
   selectedParking: Parking | undefined;
   /**
   * observable notifiant ses abbonnés à intervalle régulier
   */
   obs$ = interval(UPDATE_PARKING_INTERVAL);
+  userMarkerLayer?: L.LayerGroup;
 
   receiveMap(map: Map) {
     this.map = map;
@@ -72,8 +80,8 @@ export class MapService {
   receiveZoom(zoom: number) {
     this.zoom = zoom;
   }
-  @Output() map$: EventEmitter<L.Map> = new EventEmitter;
-  @Output() zoom$: EventEmitter<number> = new EventEmitter;
+  @Output() map$: EventEmitter<L.Map> = new EventEmitter();
+  @Output() zoom$: EventEmitter<number> = new EventEmitter();
 
    /**
    * Set general option for 'leaflet' map
@@ -93,8 +101,13 @@ export class MapService {
     return this.options;
   } // End of: setMapOption --◊
 
-  constructor(private parkingDisplayService: ParkingDisplayService, private parkingService: ParkingService) { console.log(this.navGPS);
-   }
+  constructor(
+    private parkingDisplayService: ParkingDisplayService,
+    private parkingService: ParkingService
+    )
+    {
+
+  }
 
   /**
    * Initiate Routing (itinerary) service/module
@@ -104,7 +117,7 @@ export class MapService {
    */
   setRouting(navGPS: NavGps) {
     this.routingModule(navGPS.localLat, navGPS.localLon, navGPS.distLat, navGPS.distLon);
-    setInterval(() => this.syncGPSUserLoc(this.syncNavGPS), 500)
+    setInterval(() => this.syncGPSUserLoc(this.syncNavGPS), 500);
     this.parkingService.setNavGPS(this.syncNavGPS);
   }
   /**
@@ -130,12 +143,24 @@ export class MapService {
     });
     this.updateParkingList();
     this.parkingDisplayService.selectedParking$.subscribe((parking) => {
-      this.selectedParking = parking;
+    this.selectedParking = parking;
     });
     this.map = map;
     this.map$.emit(map);
+    // Set map center on start
     map.setView([43.61424, 3.87117], 16); // Set variables for init map - Update with variables of user loc ?
+    map.setView([43.61424, 3.87117], 16).on("click",()=>{
+      if(this.routingMachineIsRunning)
+      {
+        this.stopNavigation();
+      }
+    }); // Set variables for init map
     this.zoom = map.getZoom();
+    //suppression du prefix leaflet
+    map.attributionControl.setPrefix('');
+    //suppression de l'attribution en bas de page @OpenStreetMap
+    this.locateUSerOnMap()
+    map.attributionControl.remove();
     this.zoom$.emit(this.zoom);
     // routing-machine launcher
     if (this.needNav) {
@@ -144,17 +169,81 @@ export class MapService {
     }
   } // End of routing machine launcher --◊
 
+
+  /**
+   * recupère la geolocalisation de l'utilisateur et ajoute un marqueur sur la map
+   */
+ locateUSerOnMap(){
+  this.map.on('locationfound', (e)=>{
+    console.log("locationFound");
+    // alert("map.locate");
+     var radius = 10;
+     var location = e.latlng;
+     this.addUserMarker(location,radius);
+     this.syncNavGPS.localLat=e.latlng.lat;
+     this.syncNavGPS.localLon=e.latlng.lng;
+     this.map.setView( e.latlng);
+   });
+   this.map.locate();
+ }
+  /**
+   * ajoute un marker et un cercle  sur la carte representant l'utilisateur geolocalisé
+   * @param location
+   * @param radius
+   */
+ addUserMarker(location,radius){
+  this.removeUserMarker();
+  this.userMarkerLayer=new LayerGroup();
+  L.marker(location).addTo(this.userMarkerLayer);
+  L.circle(location, radius).addTo(this.userMarkerLayer);
+  this.userMarkerLayer.addTo(this.map);
+ }
+ /** suppression du marker représentant le user
+  */
+ removeUserMarker(){
+   if(this.userMarkerLayer){
+     this.map.removeLayer(this.userMarkerLayer);
+     this.userMarkerLayer=undefined;
+   }
+
+ }
+
+  /**
+   * methode appelée afin de lancer la navigation vers un parking
+   * @param parking
+   */
+  startNavigation(parking:Parking){
+    this.stopNavigation();
+    console.log("start navigation");
+    this.map.locate();
+    this.navGPS.distLat=parking.Ylat;
+    this.navGPS.distLon=parking.Xlong;
+   if(!this.routingMachineIsRunning) this.setRouting(this.navGPS);
+
+  }
+  /**
+   * méthode permmetant d'arrêter la navigation
+   */
+  stopNavigation(){
+    if(this.routeControl&&this.routingMachineIsRunning){
+      this.routeControl.spliceWaypoints(0,2);
+      this.map.removeControl(this.routeControl);
+      this.routingMachineIsRunning=false;
+      this.needNav=false;
+      this.routeControl=undefined;
+
+    }
+  }
+
   /**
    * affiche  tous les parkings sur la carte
    */
-  initParkingWiew() {
+   initParkingWiew(){
     console.log("init Parking view");
-    console.log(this.parkings);
     this.parkingDisplayService.removeParkingsFromMap();
     this.parkings.forEach(parking => {
       this.parkingDisplayService.addParkingOnMap(parking);
     });
-    // this.map$.emit(this.map);
   }
 
   /**
@@ -168,9 +257,7 @@ export class MapService {
       if (this.syncNavGPS) {
         this.parkingService.getParkingListAround(this.syncNavGPS.localLat, this.syncNavGPS.localLon, SEARCH_RADIUS);
       }
-
-    }
-    );
+    });
   }
 
   /**
@@ -265,5 +352,5 @@ export class MapService {
         }
     }).addTo(this.map);
   }
-
 }
+

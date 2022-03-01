@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
-import { AddressBarComponent } from 'src/app/components/address-bar/address-bar.component';
+import { AddressBarComponent } from 'src/app/components/address-bar/address-bar.component'
 import { BoderAdminComponent } from 'src/app/components/boder-admin/boder-admin.component';
 import { BoderUserComponent } from 'src/app/components/boder-user/boder-user.component';
 import { AddFavoritesComponent } from 'src/app/components/bottom-popup-interactive/add-favorites/add-favorites.component';
@@ -11,8 +12,10 @@ import { BottomPopupComponent } from 'src/app/components/bottom-popup/bottom-pop
 import { FavoriteMessageComponent } from 'src/app/components/bottom-popup/favoriteMessage/favoriteMessage.component';
 import { MessageStandardComponent } from 'src/app/components/bottom-popup/messageStandard/messageStandard.component';
 import { NavbarComponent } from 'src/app/components/navbar/navbar.component';
+import { PageNotFoundComponent } from 'src/app/components/page-not-found/page-not-found.component';
 import { PopupErrorMessageComponent } from 'src/app/components/popup-error-message/popup-error-message.component';
 import { ProfilComponent } from 'src/app/components/profil/profil.component';
+import { LoginModule } from '../login/login.module';
 import { MapModule } from '../map/map.module';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
@@ -25,6 +28,7 @@ import { HomeComponent } from './home.component';
   declarations: [
     HomeComponent,
     NavbarComponent,
+    AddressBarComponent,
     BottomPopupComponent,
     BottomPopupInteractiveComponent,
     PopupErrorMessageComponent,
@@ -32,7 +36,6 @@ import { HomeComponent } from './home.component';
     MessageComponent,
     FavoriteMessageComponent,
     MessageStandardComponent,
-    AddressBarComponent,
     BoderUserComponent,
     BoderAdminComponent,
     ProfilComponent,
@@ -41,7 +44,9 @@ import { HomeComponent } from './home.component';
     CommonModule,
     HomeRoutingModule,
     LeafletModule,
-    MapModule
+    MapModule,
+    FormsModule,
+    LoginModule
   ]
 })
 export class HomeModule { }

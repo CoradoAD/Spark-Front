@@ -17,7 +17,7 @@ import { ParkingService } from 'src/app/shared/services/parking.service';
   styleUrls: ['./map.component.scss']
 })
 
-export class MapComponent implements OnInit, OnDestroy {
+export class MapComponent implements OnDestroy {
   @Output() map$: EventEmitter<L.Map> = new EventEmitter;
   @Output() zoom$: EventEmitter<number> = new EventEmitter;
   @Input() options!: L.MapOptions;
@@ -43,15 +43,13 @@ export class MapComponent implements OnInit, OnDestroy {
     this.options = this.mapService.setMapOptions();
   }
 
-  ngOnInit(): void {
-  }
-
   /**
    * Call to leaflet map initializer & param
    * @param map Leaflet 'Map'
    */
   onMapReady(map: L.Map) {
     this.mapService.MapReady(map);
+    console.log("after on map ready");
   }
 
   ngOnDestroy() {
@@ -60,4 +58,3 @@ export class MapComponent implements OnInit, OnDestroy {
   }
 
 }
-

@@ -1,15 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NavGps } from 'src/app/shared/models/nav-gps';
 import { GpsNavSimu } from 'src/app/shared/models/test/gps-nav-simu';
 import { ItineraryService } from 'src/app/shared/services/itinerary.service';
-import { MapService } from 'src/app/shared/services/map.service';
 
 @Component({
   selector: 'app-itinerary',
   templateUrl: './itinerary.component.html',
   styleUrls: ['./itinerary.component.scss']
 })
-export class ItineraryComponent implements OnInit {
+export class ItineraryComponent {
   private navGPS?: NavGps;
   // test
   public simuNavGPS?: NavGps[];
@@ -55,6 +54,7 @@ export class ItineraryComponent implements OnInit {
         this.navGPS = {localLat: 43.54508, localLon: 3.9818, distLat: 43.54508, distLon: 3.9818},
       ]
     }
+
     console.log(this.gpsNavSimu.journeyNavSimu[0]);
     // set routing
     this.itineraryServ.setRouting(this.gpsNavSimu.journeyNavSimu[21]);
@@ -69,7 +69,4 @@ export class ItineraryComponent implements OnInit {
     }, 1300)
 
   }
-
-  ngOnInit(): void { }
-
 }

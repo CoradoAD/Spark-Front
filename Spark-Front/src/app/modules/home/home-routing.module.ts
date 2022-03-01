@@ -15,17 +15,6 @@ const routes: Routes = [
         path: 'map',
         loadChildren: () => import('../map/map.module').then(m => m.MapModule)
       },
-      // Exemple de points d'entrée secondaires :
-      // 'home/fav'
-      // {
-      //   path: 'favoris',
-      //   loadChildren: () => import('../fav/fav.module').then(m => m.FavModule)
-      // },
-      // 'home/user-account'
-      // {
-      //   path: 'user-account',
-      //   loadChildren: () => import('../components/user/user-account.component').then(m => m.UserPageComponent)
-      // },
       // Default Path :
       {
         path: '',
@@ -38,7 +27,7 @@ const routes: Routes = [
     path: '',
     redirectTo: '/home/map',
     pathMatch: 'full'
-  }
+  },
 ];
 
 @NgModule({
