@@ -1,12 +1,7 @@
-<div class="container-popup showPopup">
+<div class="container-popup">
 
   <p class="title">Profil</p>
-  <div class="container-txt">
-    <p [ngStyle]="{'margin-top': '10px'}" class="message" *ngIf="currentUser"></p>
-
-
-    <!-- <p class="message">Pseudo : {{currentUser.username }} </p>
-      <p class="message"> Mail : {{ currentUser.email }}</p> -->
+  <div class="container-txt" *ngIf="currentUser">
 
     <p class="username">{{currentUser.username}}</p>
     <p class="message-info">Vos informations personnelles</p>

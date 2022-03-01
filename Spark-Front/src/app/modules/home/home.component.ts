@@ -9,13 +9,12 @@ import { ApiAddressService } from 'src/app/shared/services/api-address.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-
   content?: string;
 
   showAddressBar!: boolean;
-  showProfil! : boolean
+  showProfil!: boolean;
 
-  constructor(private apiAddress : ApiAddressService) {}
+  constructor(private apiAddress: ApiAddressService) {}
 
   ngOnInit(): void {
     // this.userService.getPublicContent().subscribe(
@@ -26,8 +25,6 @@ export class HomeComponent implements OnInit {
     //     this.content = JSON.parse(err.error).message;
     //   }
     // );
-
-
   }
 
   onShowAddressBar(e: boolean) {
@@ -38,8 +35,7 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  onDisplayProfil(e : boolean) {
-
+  onDisplayProfil(e: boolean) {
     if (!this.showProfil) {
       this.showProfil = e;
     } else {
