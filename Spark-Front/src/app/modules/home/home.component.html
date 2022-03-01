@@ -7,3 +7,6 @@
 <app-navbar></app-navbar>
 <app-bottom-popup-interactive ></app-bottom-popup-interactive>
 
+<app-profil [hidden]="!showProfil"></app-profil>
+<app-address-bar [hidden]="!showAddressBar"></app-address-bar>
+<app-navbar (showAddressBar) = "onShowAddressBar($event)" (showProfil) = "onDisplayProfil($event)"></app-navbar>

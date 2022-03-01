@@ -1,3 +1,19 @@
+
+<!-- <div  class="container-address">
+  <div *ngFor="let adress of departure">
+    <p>{{adress.properties.label}} </p>
+  </div>
+</div> -->
+
+
+<div [hidden] = "!show" class="container-address">
+  <div class="auto-suggestion" (click)="chooseAdress(adress.properties.label)"  *ngFor="let adress of departure">
+    <p class="adress-item">{{adress.properties.label}} </p>
+  </div>
+</div>
+
+
+
 <form class="addressBarForm" (ngSubmit)="submit()">
 
   <label for="address" class="label">Entrez votre destination</label>
@@ -7,10 +23,50 @@
     <img class="icon star" src="assets/popup-message/star.svg" />
 
     <input [(ngModel)]="searchAddress" class="fieldAddress"  name="searchAddress" type="text"
-     autocomplete="off" >
+     autocomplete="off" (input)="eventInput()" >
+
+
 
     <button class="btn-search" type="submit">
       <img class="icon search" src="assets/addressBar/search.svg" />
     </button>
   </div>
 </form>
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div [hidden] = "!show" class="container-address">
+  <div class="auto-suggestion" (click)="chooseAdress(adress.label)"  *ngFor="let adress of departure">
+    <p class="adress-item">{{adress.label}} </p>
+  </div>
+</div>
+
+
+
+<form class="addressBarForm" (ngSubmit)="submit()">
+
+  <label for="address" class="label">Entrez votre destination</label>
+
+  <div class="inputBloc">
+
+    <img class="icon star" src="assets/popup-message/star.svg" />
+
+    <input [(ngModel)]="searchAddress" class="fieldAddress"  name="searchAddress" type="text"
+     autocomplete="off" (input)="eventInput()" >
+
+
+
+    <button class="btn-search" type="submit">
+      <img class="icon search" src="assets/addressBar/search.svg" />
+    </button>
+  </div>
+</form>
+ -->

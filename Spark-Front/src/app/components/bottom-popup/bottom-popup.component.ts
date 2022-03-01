@@ -12,6 +12,7 @@ export class BottomPopupComponent implements OnInit {
 
 
   parking!: Parking;
+  showPopup! : boolean;
 
   constructor(private parkingDisplayService : ParkingDisplayService) { }
 
@@ -24,4 +25,8 @@ export class BottomPopupComponent implements OnInit {
     this.parking = this.parkingDisplayService.selectedParking$.value!;
   }
 
+  displayPopup() {
+
+    this.showPopup = true
+  }
 }

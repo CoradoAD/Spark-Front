@@ -44,7 +44,6 @@ const routes: Routes = [
   },  // Wildcard route for a 404 page
 ];
 
-
 @NgModule({
   imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })],
   exports: [RouterModule]

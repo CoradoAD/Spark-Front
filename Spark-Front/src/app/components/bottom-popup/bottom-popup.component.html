@@ -1,4 +1,4 @@
-<div class="container-popup">
+<div [hidden] = "showPopup" class="container-popup" (click)="displayPopup()">
   <app-favoriteMessage [parking] = "parking"></app-favoriteMessage>
   <app-messageStandard [parking] = "parking"></app-messageStandard>
 </div>

@@ -47,7 +47,7 @@ export class MessageStandardComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     /**Test Dev */
-    setTimeout(() => this.test(), 30000);
+    //setTimeout(() => this.test(), 30000);
   }
 
    /**Test Dev */

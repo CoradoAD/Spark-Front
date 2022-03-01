@@ -14,6 +14,8 @@ export class ItineraryComponent {
   public simuNavGPS?: NavGps[];
   public gpsNavSimu?: GpsNavSimu;
   private navCounter = 0;
+  showPopup! : boolean;
+
   // --◊
 
   constructor(private itineraryServ: ItineraryService) {
@@ -60,13 +62,25 @@ export class ItineraryComponent {
     this.itineraryServ.setRouting(this.gpsNavSimu.journeyNavSimu[21]);
     console.log('Default navCounter :' + this.navCounter);
     // initial update of user GPS localisation
-    this.itineraryServ.syncGPSUserLoc(this.gpsNavSimu!.journeyNavSimu[this.navCounter]);
+    this.itineraryServ.syncGPSUserLoc(
+      this.gpsNavSimu!.journeyNavSimu[this.navCounter]
+    );
     // update user localisation
     setInterval(() => {
-      this.itineraryServ.syncGPSUserLoc(this.gpsNavSimu!.journeyNavSimu[this.navCounter]);
-      this.navCounter ++;
+      this.itineraryServ.syncGPSUserLoc(
+        this.gpsNavSimu!.journeyNavSimu[this.navCounter]
+      );
+      this.navCounter++;
+
+      if (this.navCounter == this.gpsNavSimu!.journeyNavSimu.length) {
+
+        setTimeout(() => {
+          this.showPopup = true;
+        }, 2000);
+      }
+
       console.log('Updated navCounter :' + this.navCounter);
-    }, 1300)
+    }, 1300);
 
   }
 }
