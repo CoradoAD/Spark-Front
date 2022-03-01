@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavGps } from 'src/app/shared/models/nav-gps';
 import { GpsNavSimu } from 'src/app/shared/models/test/gps-nav-simu';
 import { ItineraryService } from 'src/app/shared/services/itinerary.service';
+import { MapService } from 'src/app/shared/services/map.service';
 
 @Component({
   selector: 'app-itinerary',
@@ -9,17 +10,64 @@ import { ItineraryService } from 'src/app/shared/services/itinerary.service';
   styleUrls: ['./itinerary.component.scss']
 })
 export class ItineraryComponent {
-  private navGPS?: NavGps;
+  private navGPS!: NavGps;
   // test
   public simuNavGPS?: NavGps[];
   public gpsNavSimu?: GpsNavSimu;
   private navCounter = 0;
+  private simul:boolean=false;;
   showPopup! : boolean;
-
+  
   // --◊
 
-  constructor(private itineraryServ: ItineraryService) {
-    this.testNavSimulation();
+  constructor(private itineraryServ: ItineraryService, private mapServ :MapService) {
+    if(this.simul){this.testNavSimulation();}
+    else{
+      console.log("itinerary");
+      var lat=43.58895;
+      var lon=3.93254;
+      this.navGPS = {
+        localLat: lat,
+        localLon: lon,
+        distLat: 43.61424,
+        distLon: 3.87117,
+      };
+      this.syncGPSUserLoc(this.navGPS);
+      if(navigator.geolocation){
+      
+        navigator.geolocation.getCurrentPosition((position)=>{
+        
+          console.log(position.coords.latitude)
+          console.log(position.coords.longitude)
+          
+          if( this.navGPS){
+            this.navGPS.localLat = position.coords.latitude;
+          this.navGPS.localLon = position.coords.longitude;
+        }});
+      }
+        else{
+          alert("Vous devez activer la géolocalisation!");
+        }
+    
+      this.setRouting(this.navGPS);
+    }
+  }
+
+  /**
+   * Set routing module
+   * @param navGPS NavGps local & distant GPS localisation
+   */
+   setRouting(navGPS: NavGps) {
+    this.mapServ.navGPS = this.navGPS;
+  }
+
+  /**
+   * Sync user location on nav itinerary (leaflet-routing-machine)
+   * @param navGPS NavGps - actualised GPS info of user
+   */
+  syncGPSUserLoc(navGPS: NavGps){
+   
+    this.mapServ.syncNavGPS = navGPS;
   }
 
   /**

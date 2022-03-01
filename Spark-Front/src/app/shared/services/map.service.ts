@@ -108,6 +108,7 @@ export class MapService {
     {
 
   }
+   
 
   /**
    * Initiate Routing (itinerary) service/module
@@ -171,7 +172,7 @@ export class MapService {
 
 
   /**
-   * recupère la geolocalisation de l'utilisateur et ajoute un marqueur sur la map
+   * get user position and add user marker on map.
    */
  locateUSerOnMap(){
   this.map.on('locationfound', (e)=>{
@@ -187,18 +188,20 @@ export class MapService {
    this.map.locate();
  }
   /**
-   * ajoute un marker et un cercle  sur la carte representant l'utilisateur geolocalisé
+   * add marker to represent user location
    * @param location
    * @param radius
    */
  addUserMarker(location,radius){
   this.removeUserMarker();
   this.userMarkerLayer=new LayerGroup();
-  L.marker(location).addTo(this.userMarkerLayer);
-  L.circle(location, radius).addTo(this.userMarkerLayer);
-  this.userMarkerLayer.addTo(this.map);
+  
+    L.marker(location, {
+      icon: this.myUserIcon}).addTo(this.userMarkerLayer);
+  // L.circle(location, radius).addTo(this.userMarkerLayer);
+    this.userMarkerLayer.addTo(this.map);
  }
- /** suppression du marker représentant le user
+ /** remove user marker form map
   */
  removeUserMarker(){
    if(this.userMarkerLayer){
@@ -209,7 +212,7 @@ export class MapService {
  }
 
   /**
-   * methode appelée afin de lancer la navigation vers un parking
+   * launch navigation to parking
    * @param parking
    */
   startNavigation(parking:Parking){
@@ -222,7 +225,7 @@ export class MapService {
 
   }
   /**
-   * méthode permmetant d'arrêter la navigation
+   * start navigation
    */
   stopNavigation(){
     if(this.routeControl&&this.routingMachineIsRunning){
@@ -236,7 +239,7 @@ export class MapService {
   }
 
   /**
-   * affiche  tous les parkings sur la carte
+   * display all parking on the map
    */
    initParkingWiew(){
     console.log("init Parking view");
@@ -247,7 +250,7 @@ export class MapService {
   }
 
   /**
-   * fonction mettant à jour la liste des parkings a intervalle régulier
+   * update park informations on the map
    */
   updateParkingList() {
     this.obs$.subscribe((v) => {
