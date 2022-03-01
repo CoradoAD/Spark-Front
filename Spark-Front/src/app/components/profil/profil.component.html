@@ -1,26 +1,20 @@
-<div class="container" *ngIf="currentUser; else loggedOut">
-    <header class="jumbotron">
-        <h3>
-            <strong>{{ currentUser.username }}</strong> Profile
-        </h3>
-    </header>
-    <p>
-        <strong>Token:</strong>
-        {{ currentUser.accessToken.substring(0, 20) }} ...
-        {{ currentUser.accessToken.substr(currentUser.accessToken.length - 20) }}
-    </p>
-    <p>
-        <strong>Email:</strong>
-        {{ currentUser.email }}
-    </p>
-    <strong>Roles:</strong>
-    <ul>
-        <li *ngFor="let role of currentUser.roles">
-            {{ role }}
-        </li>
-    </ul>
-</div>
+<div class="container-popup showPopup">
 
-<ng-template #loggedOut>
-    Please login.
-</ng-template>
+  <p class="title">Profil</p>
+  <div class="container-txt">
+    <p [ngStyle]="{'margin-top': '10px'}" class="message" *ngIf="currentUser"></p>
+
+
+    <!-- <p class="message">Pseudo : {{currentUser.username }} </p>
+      <p class="message"> Mail : {{ currentUser.email }}</p> -->
+
+    <p class="username">{{currentUser.username}}</p>
+    <p class="message-info">Vos informations personnelles</p>
+    <p class="mail"> {{currentUser.email}}</p>
+    <p class="gain"> 10 points spark</p>
+
+    <button (click)="logout()" class="btn-check">
+      <p class="txt-button" routerLink="/home" (click)="logout()">DECONNEXION</p>
+    </button>
+  </div>
+</div>

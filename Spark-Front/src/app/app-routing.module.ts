@@ -11,18 +11,17 @@ const routes: Routes = [
   { path: '', loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule)},
 
 
-  // { path: 'profile', component: ProfilComponent },
-  // { path: 'user', component: BoderUserComponent },
+  { path: 'profile', component: ProfilComponent },
+  { path: 'user', component: BoderUserComponent },
 
-  // { path: 'admin', component: BoderAdminComponent },
-  // { path: 'login', loadChildren: () => import('./modules/login/login.module').then(m => m.LoginModule) },
-  // { path: 'register', loadChildren: () => import('./modules/register/register.module').then(m => m.RegisterModule) },
-  // { path: 'home', canActivate: [AuthGuard], loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule) },
+  { path: 'admin', component: BoderAdminComponent },
+  { path: 'login', loadChildren: () => import('./modules/login/login.module').then(m => m.LoginModule) },
+  { path: 'register', loadChildren: () => import('./modules/register/register.module').then(m => m.RegisterModule) },
+  { path: 'home', canActivate: [AuthGuard], loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule) },
 
 
   // { path: '**', component: PageNotFoundComponent },  // Wildcard route for a 404 page
 ];
-
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })],
